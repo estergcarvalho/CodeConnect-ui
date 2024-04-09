@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200&display=swap');
+
+:root {
+    --black: #222831;
+    --cinza: #31363f;
+    --teal: #76ABAE;
+    --grey: #EEEEEE;
+    --teal-2: #64CCC5;
+    --teal-3: #176B87;
+    --teal-4: #135D66;
+    --background-btn: #0c7193;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+}
