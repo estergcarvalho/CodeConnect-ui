@@ -16,61 +16,62 @@
     </head>
 
     <body>
-        <div class="container-fluid">
+        <main class="container-fluid">
             <div class="cadastro-container d-flex container position-absolute top-50 start-50 translate-middle text-center">
                 <div class="cadastro-content row justify-content-md-center">
-                    <div class="cadastro-text col-4 p-5">
-                        <h3 class="cadastro-title">CodeConnect</h3>
+                    <div class="cadastro-text col-3">
+                        <h3 class="cadastro-title fs-5">CodeConnect</h3>
 
-                        <div>
-                            <p class="cadastro-description">
-                                Seja bem-vindo à nossa comunidade! 
-                                Complete seu cadastro e 
-                                junte-se a nós para explorar um mundo de conexões e descobertas.
-                                <br>
-                                <br>
-                                #NovasAmizades
-                                <br>
-                                #NovasExperiências
-                            </p>
-                            <span class="cadastro-text-conta">Já possui conta?</span>
-                            <a class="btn btn-outline-light" href="/login/login.html">Entrar</a>
-                        </div>
+                        <p class="cadastro-description">
+                            Seja bem-vindo à nossa comunidade! 
+                            Complete seu cadastro e 
+                            junte-se a nós para explorar um mundo de conexões e descobertas.
+                            <br>
+                            <br>
+                            #NovasAmizades
+                            <br>
+                            #NovasExperiências
+                        </p>
+                        
+                        <div class="cadastro-text-conta text-center">
+                            <p class="cadastro-text-title">Já possui conta?</p>
+                            <a class="cadastro-text-link btn btn-outline-light" href="/login/login.html">Entrar</a>
+                        </div>            
                     </div>
             
-                    <div class="cadastro-form col-7 text-start">
+                    <div class="cadastro-form col-5 text-start">
                         <h3 class="cadastro">Cadastro</h3>
 
                         <form id="form-cadastro">
                             <div class="col-12 mb-3">
-                                <label for="nome" class="form-label">Nome</label>
+                                <label for="nome" class="form-label fs-10">Nome</label>
                                 <input type="text" class="form-control" id="nome" name="nome" required>
                             </div>
 
                             <div class="col-12 mb-3">
-                                <label for="email" class="form-label">E-mail</label>
+                                <label for="email" class="form-label fs-10">E-mail</label>
                                 <input type="email" class="form-control" id="email" autocomplete="off" name="email" required>
                             </div>
 
                             <div class="row">
-                                <div class="col-6 mb-3">
-                                    <label for="senha" class="form-label">Senha</label>
+                                <div class="col-6">
+                                    <label for="senha" class="form-label fs-10">Senha</label>
                                     <input type="password" class="form-control" id="senha" name="senha" autocomplete="off" required>
                                 </div>
 
-                                <div class="col-6 mb-3">
-                                    <label for="confirma-senha" class="form-label">Confirme a senha</label>
+                                <div class="col-6">
+                                    <label for="confirma-senha" class="form-label fs-10">Confirme a senha</label>
                                     <input type="password" class="form-control" id="confirma-senha" name="confirma-senha" minlength="5" autocomplete="off" required>
                                 </div>
                             </div>
 
-                            <div class="cadastro-btn d-grid gap-2 mb-3">
+                            <div class="cadastro-btn d-grid gap-2">
                                 <button type="submit" class="btn-cadastro btn">Entrar</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-        </div>
+        </main>
     </body>
 </html>
