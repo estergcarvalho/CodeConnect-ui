@@ -1,0 +1,163 @@
+.main {
+    min-height: 100vh;
+}
+
+.feed-container {
+    min-height: 100vh;
+}
+
+.navbar {
+    height: 55px;
+    padding: 0;
+    background-color: var(--black2);
+}
+
+.navbar-top {
+    height: 55px;
+}
+
+.feed-content {
+    padding-top: 85px;
+    padding-bottom: 30px;
+}
+
+.card-post {
+    padding: 0;
+    background-color: var(--black);
+}
+
+.card-header {
+    height: 78px;
+    background-color: var(--cinza2);
+}
+
+.card-post-avatar {
+    height: 60px;
+    width: 85px;
+}
+
+.card-post-avatar img {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+}
+
+.card-post-user-name {
+    left: 70px;
+}
+
+.card-post-user-name a {
+    text-decoration: none;
+    color: var(--teal-2);
+}
+
+.card-post-user-name a:hover {
+    text-decoration: none;
+}
+
+.card-post-date {
+    font-size: 11px;
+}
+
+.card-post-text {
+    font-size: 14px;
+    font-weight: 200;
+    margin-bottom: 0;
+}
+
+.card-comment {
+    margin-top: 5px;
+    display: flex;
+}
+
+.card-comment-avatar {
+    height: 40px;
+    width: 40px;
+    border-radius: 90%;
+}
+
+.card-comment-text {
+    border-bottom: 10px;
+    padding-left: 15px;
+    width: 100%;
+}
+
+.card-comment-text label {
+    padding: 0;
+}
+
+.card-comment-text textarea {
+    width: 100%;
+    height: 40px;
+    padding: 10px !important;
+    font-size: 13px;
+    font-weight: 400;
+    border: none;
+    border-radius: 12px;
+    background-color: var(--cinza2);
+}
+
+.card-comment-response {
+    display: flex;
+}
+
+.card-comment-response-avatar {
+    height: 40px;
+    width: 40px;
+    border-radius: 90%;
+}
+
+.card-response-user {
+    float: left;
+}
+
+.card-comment-response-text {
+    margin-left: 12px;
+    background-color: var(--cinza);
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+}
+
+.card-comment-response-text a {
+    font-size: 13px;
+    text-decoration: none;
+    color: var(--teal-2);
+    font-weight: 400;
+}
+
+.card-comment-response-text a:hover {
+    text-decoration: none;
+}
+
+.card-comment-response-text span {
+    font-size: 13px;
+    font-weight: 200;
+}
+
+.card-comment-response-options {
+    font-size: 11px;
+    margin-top: 5px;
+    margin-left: 17px;
+}
+
+.card-comment-response-options a {
+    margin-right: 5px;
+    text-decoration: none;
+    color: var(--teal-2);
+}
+
+.card-comment-response-options a:hover {
+    text-decoration: none;
+    color: var(--teal-2);
+}
+
+.footer{
+    position: absolute;
+    width: 100%;
+    padding: 40px;
+    font-size: 12px;
+    font-weight: 300;
+    background-color: var(--black2);
+
+}
