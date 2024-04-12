@@ -152,12 +152,56 @@
     color: var(--teal-2);
 }
 
-.footer{
+.footer {
     position: absolute;
     width: 100%;
     padding: 40px;
     font-size: 12px;
     font-weight: 300;
     background-color: var(--black2);
+}
 
+.card-reactions-count a {
+    font-size: 12px;
+    font-weight: 300;
+    text-decoration: none;
+    color: var(--teal-2);
+    margin-left: 1px;
+}
+
+.card-reactions {
+    font-size: 13px;
+    font-weight: 300;
+}
+
+.card-reactions a {
+    text-decoration: none;
+    margin-right: 8px;
+}
+
+.card-reactions img {
+    width: 13px;
+    margin-top: 5px;
+    float: left;
+}
+
+.card-reactions span {
+    font-size: 13px;
+    font-weight: 300;
+    display: block;
+    margin: 2px 15px 0 5px;
+    float: left;
+}
+
+.card-line {
+    opacity: 0.1;
+    margin: 10px 0;
+}
+
+.card-line-count {
+    margin-top: 8px;
+}
+
+.card-line-reactions {
+    margin-bottom: 22px;
 }
