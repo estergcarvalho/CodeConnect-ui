@@ -23,17 +23,83 @@
 
 .card-post {
     padding: 0;
+    border-radius: 5px;
+}
+
+.card-create-post {
+    margin-bottom: 15px;
+    padding: 0;
+}
+
+.card-create-post-body {
+    background-color: var(--black2);
+    border-radius: 5px;
+    height: 210px;
+}
+
+.card-create-post-user {
+    display: flex;
+    font-size: 11px;
+    margin-left: 14px !important;
+    border-radius: 20px;
+}
+
+.card-create-post-avatar {
+    border-radius: 50%;
+    height: 30px;
+    margin-top: 10px;
+    width: 30px;
+}
+
+.card-create-post-user p {
+    font-size: 12px;
+    font-weight: 500;
+    margin-left: 6px;
+    margin-top: 15px;
+    width: 100%;
+}
+
+.card-post-create-text textarea {
     background-color: var(--black);
+    border-radius: 3px;
+    border-top: none;
+    border-right: 1px solid var(--black2);
+    border-bottom: none;
+    border-left: 1px solid var(--black2);
+    font-size: 13px;
+    padding: 5px 10px;
+    height: 100px;
+    width: 100%;
+}
+
+.card-post-create-publish {
+    float: right;
+    margin-right: 15px;
+    margin-top: -15px;
+}
+
+.card-post-create-publish-btn {
+    background-color: var(--btn);
+    border-radius: 5px;
+    border: none;
+    font-size: 13px;
+    font-weight: 400;
+    padding: 4px 15px;
+}
+
+.card-post-create-publish-btn:hover {
+    background-color: var(--btn-hover);
 }
 
 .card-header {
-    height: 78px;
     background-color: var(--cinza2);
+    border-radius: 5px;
+    height: 60px;
 }
 
 .card-post-avatar {
-    height: 60px;
-    width: 85px;
+    height: 40px;
+    width: 65px;
 }
 
 .card-post-avatar img {
@@ -43,12 +109,13 @@
 }
 
 .card-post-user-name {
-    left: 70px;
+    left: 60px;
 }
 
 .card-post-user-name a {
-    text-decoration: none;
     color: var(--teal-2);
+    font-size: 13px;
+    text-decoration: none;
 }
 
 .card-post-user-name a:hover {
@@ -56,7 +123,7 @@
 }
 
 .card-post-date {
-    font-size: 11px;
+    font-size: 10px;
 }
 
 .card-post-text {
@@ -71,8 +138,8 @@
 }
 
 .card-comment-avatar {
-    height: 40px;
-    width: 40px;
+    height: 35px;
+    width: 35px;
     border-radius: 90%;
 }
 
@@ -102,8 +169,8 @@
 }
 
 .card-comment-response-avatar {
-    height: 40px;
-    width: 40px;
+    height: 35px;
+    width: 35px;
     border-radius: 90%;
 }
 
@@ -193,11 +260,12 @@
 }
 
 .card-reactions span {
+    color: var(--teal-2);
     font-size: 13px;
     font-weight: 300;
+    float: left;
     display: block;
     margin: 2px 15px 0 5px;
-    float: left;
 }
 
 .card-line {
