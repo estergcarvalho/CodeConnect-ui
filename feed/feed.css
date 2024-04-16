@@ -16,6 +16,31 @@
     height: 55px;
 }
 
+.navbar-search {
+    margin-left: 4px;
+}
+
+.navbar-search input {
+    border-radius: 10px;
+    border: none;
+    padding: 4px 10px 4px 31px;
+    width: 315px;
+    height: 35px; 
+    font-size: 13px;
+    font-weight: 300;
+}
+
+.navbar-icon {
+    width: 12px;
+    position: absolute;
+    color: var(--falcon-gray-400);
+    top: 50%;
+    left: 0.9rem;
+    -webkit-transform: translateY(-48%);
+    -ms-transform: translateY(-48%);
+    transform: translateY(-48%);
+}
+
 .feed-content {
     padding-top: 85px;
     padding-bottom: 30px;
@@ -114,7 +139,7 @@
 
 .card-post-user-name a {
     color: var(--teal-2);
-    font-size: 13px;
+    font-size: 14px;
     text-decoration: none;
 }
 
@@ -122,8 +147,14 @@
     text-decoration: none;
 }
 
+.card-post-profession {
+    font-size: 11px;
+    font-weight: 300;
+}
+
 .card-post-date {
     font-size: 10px;
+    font-weight: 300;
 }
 
 .card-post-text {
@@ -160,7 +191,7 @@
     font-size: 13px;
     font-weight: 400;
     border: none;
-    border-radius: 12px;
+    border-radius: 10px;
     background-color: var(--cinza2);
 }
 
