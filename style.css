@@ -25,6 +25,10 @@ textarea:focus {
     outline: none;
 }
 
+input:focus {
+    outline: none;
+}
+
 .fs-10 {
     font-size: 0.8333333333rem !important;
 }
