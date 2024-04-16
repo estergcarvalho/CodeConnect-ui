@@ -49,7 +49,7 @@
 .navbar-menu-avatar-user {
     border-radius: 50%;
     height: 30px;
-    margin-top: 12px;
+    margin-top: 6px;
     width: 30px;
     margin-left: 130px;
 }
@@ -58,6 +58,7 @@
     font-size: 12px;
     font-weight: 300;
     background-color: var(--black2);
+    margin-top: 7px !important;
 }
 
 .feed-content {
