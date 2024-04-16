@@ -25,7 +25,7 @@
     border: none;
     padding: 4px 10px 4px 31px;
     width: 315px;
-    height: 35px; 
+    height: 35px;
     font-size: 13px;
     font-weight: 300;
 }
@@ -39,6 +39,26 @@
     -webkit-transform: translateY(-48%);
     -ms-transform: translateY(-48%);
     transform: translateY(-48%);
+}
+
+.navbar-menu-user {
+    float: inline-end;
+    margin-bottom: 5px;
+}
+
+.navbar-menu-avatar-user {
+    border-radius: 50%;
+    height: 30px;
+    margin-top: 6px;
+    width: 30px;
+    margin-left: 130px;
+}
+
+.navbar-menu-options {
+    font-size: 12px;
+    font-weight: 300;
+    background-color: var(--black2);
+    margin-top: 7px !important;
 }
 
 .feed-content {
