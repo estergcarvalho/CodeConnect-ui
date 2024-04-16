@@ -21,6 +21,10 @@ body {
     font-size: 1rem !important;
 }
 
+textarea:focus {
+    outline: none;
+}
+
 .fs-10 {
     font-size: 0.8333333333rem !important;
 }
