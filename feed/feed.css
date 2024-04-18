@@ -2,6 +2,7 @@
     padding: 0;
     border-radius: 5px;
     border-color: var(--black2);
+    margin-bottom: 15px;
 }
 
 .card-create-post {
