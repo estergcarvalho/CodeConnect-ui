@@ -1,74 +1,8 @@
-.main {
-    min-height: 100vh;
-}
-
-.feed-container {
-    min-height: 100vh;
-}
-
-.navbar {
-    height: 55px;
-    padding: 0;
-    background-color: var(--black2);
-}
-
-.navbar-top {
-    height: 55px;
-}
-
-.navbar-search {
-    margin-left: 4px;
-}
-
-.navbar-search input {
-    border-radius: 10px;
-    border: none;
-    padding: 4px 10px 4px 31px;
-    width: 315px;
-    height: 35px;
-    font-size: 13px;
-    font-weight: 300;
-}
-
-.navbar-icon {
-    width: 12px;
-    position: absolute;
-    color: var(--falcon-gray-400);
-    top: 50%;
-    left: 0.9rem;
-    -webkit-transform: translateY(-48%);
-    -ms-transform: translateY(-48%);
-    transform: translateY(-48%);
-}
-
-.navbar-menu-user {
-    float: inline-end;
-    margin-bottom: 5px;
-}
-
-.navbar-menu-avatar-user {
-    border-radius: 50%;
-    height: 30px;
-    margin-top: 6px;
-    width: 30px;
-    margin-left: 130px;
-}
-
-.navbar-menu-options {
-    font-size: 12px;
-    font-weight: 300;
-    background-color: var(--black2);
-    margin-top: 7px !important;
-}
-
-.feed-content {
-    padding-top: 85px;
-    padding-bottom: 30px;
-}
-
 .card-post {
     padding: 0;
     border-radius: 5px;
+    border-color: var(--black2);
+    margin-bottom: 15px;
 }
 
 .card-create-post {
@@ -99,7 +33,7 @@
 .card-create-post-user p {
     font-size: 12px;
     font-weight: 500;
-    margin-left: 6px;
+    margin-left: 15px;
     margin-top: 15px;
     width: 100%;
 }
@@ -137,9 +71,10 @@
 }
 
 .card-header {
-    background-color: var(--cinza2);
+    background-color: var(--grey-two);
     border-radius: 5px;
-    height: 60px;
+    height: 65px;
+    padding-top: 11px;
 }
 
 .card-post-avatar {
@@ -158,7 +93,7 @@
 }
 
 .card-post-user-name a {
-    color: var(--teal-2);
+    color: var(--green-water-two);
     font-size: 14px;
     text-decoration: none;
 }
@@ -212,7 +147,7 @@
     font-weight: 400;
     border: none;
     border-radius: 10px;
-    background-color: var(--cinza2);
+    background-color: var(--grey-two);
 }
 
 .card-comment-response {
@@ -231,7 +166,7 @@
 
 .card-comment-response-text {
     margin-left: 12px;
-    background-color: var(--cinza);
+    background-color: var(--grey-one);
     padding: 10px;
     border-radius: 10px;
     display: flex;
@@ -240,7 +175,7 @@
 .card-comment-response-text a {
     font-size: 13px;
     text-decoration: none;
-    color: var(--teal-2);
+    color: var(--green-water-two);
     font-weight: 400;
 }
 
@@ -262,28 +197,19 @@
 .card-comment-response-options a {
     margin-right: 5px;
     text-decoration: none;
-    color: var(--teal-2);
+    color: var(--green-water-two);
 }
 
 .card-comment-response-options a:hover {
     text-decoration: none;
-    color: var(--teal-2);
-}
-
-.footer {
-    position: absolute;
-    width: 100%;
-    padding: 40px;
-    font-size: 12px;
-    font-weight: 300;
-    background-color: var(--black2);
+    color: var(--green-water-two);
 }
 
 .card-reactions-count a {
     font-size: 12px;
     font-weight: 300;
     text-decoration: none;
-    color: var(--teal-2);
+    color: var(--green-water-two);
     margin-left: 1px;
 }
 
@@ -311,7 +237,7 @@
 }
 
 .card-reactions span {
-    color: var(--teal-2);
+    color: var(--green-water-two);
     font-size: 13px;
     font-weight: 300;
     float: left;
