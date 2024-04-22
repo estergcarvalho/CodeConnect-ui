@@ -257,3 +257,117 @@
 .card-line-reactions {
     margin-bottom: 22px;
 }
+
+.card-timeline {
+    border-color: var(--black2);
+}
+
+.card-timeline-header {
+    height: 49px;
+    border: 1px solid var(--black2);
+}
+
+.card-timeline-title {
+    background-color: var(--black2);
+    border: none;
+}
+
+.card-timeline-title h5 {
+    font-size: 13px;
+    font-weight: 400;
+    padding-top: 5px;
+}
+
+.card-timeline-icons-users {
+    margin-top: 6px;
+}
+
+.card-timeline-icon {
+    padding: 0 9px;
+    border-radius: 50%;
+    border-color: var(--green-water-two);
+    z-index: 1;
+}
+
+.card-timeline-icon i {
+    font-size: 20px;
+}
+
+.card-timeline-icon::before {
+    content: "";
+    position: absolute;
+    border-left: 2px solid var(--black2);
+    height: 85px;
+    left: 23px;
+    top: 92px;
+    transform: translateX(-55%);
+    z-index: -1;
+}
+
+.card-timeline-activity {
+    height: 110px;
+}
+
+.card-timeline-recent-activity {
+    border-radius: 3px;
+    margin-left: -5px;
+    padding: 0 5px;
+    position: relative;
+}
+
+.card-timeline-content {
+    position: relative;
+    display: flex;
+    background: var(--black2);
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom: 30px;
+}
+
+.card-timeline-content::before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px 10px 0;
+    border-color: var(--black2) transparent;
+    bottom: calc(100% + -20px);
+    left: -12px;
+    transform: rotate(88deg);
+}
+
+.card-timeline-content p {
+    font-size: 11px;
+    font-weight: 400;
+    margin: 5px;
+}
+
+.card-timeline-content span {
+    color: var(--green-water-two);
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.card-timeline-card {
+    font-size: 10px;
+    margin: 3px;
+}
+
+.card-timeline-card a {
+    text-decoration: none;
+    color: var(--green-water-two);
+    font-weight: 500;
+}
+
+.card-timeline-name-user {
+    font-size: 12px !important;
+    font-weight: 300;
+    margin-left: 5px;
+}
+
+.card-timeline-card img {
+    height: 30px;
+    width: 30px;
+    border-radius: 90%;
+}
