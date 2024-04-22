@@ -297,11 +297,15 @@
     content: "";
     position: absolute;
     border-left: 2px solid var(--black2);
-    height: 99px;
+    height: 85px;
     left: 23px;
     top: 92px;
     transform: translateX(-55%);
     z-index: -1;
+}
+
+.card-timeline-activity {
+    height: 110px;
 }
 
 .card-timeline-recent-activity {
