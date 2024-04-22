@@ -317,6 +317,7 @@
     background: var(--black2);
     padding: 5px;
     border-radius: 5px;
+    margin-bottom: 30px;
 }
 
 .card-timeline-content::before {
