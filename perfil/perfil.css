@@ -29,7 +29,7 @@
 }
 
 .card-body {
-    background-color: var(--black2);
+    background-color: var(--lightblack);;
     height: 230px;
 }
 
