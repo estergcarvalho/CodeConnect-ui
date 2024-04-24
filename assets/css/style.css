@@ -2,12 +2,13 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
 
 :root {
-    --black: #222831;
-    --black2: #323336;
-    --grey-one: #31363f;
-    --grey-two:#333436;
+    --deep-black: #222831;
+    --lightblack: #323336;
+    --darkgrey: #31363f;
+    --mediumgrey:#333436;
     --teal: #76ABAE;
-    --grey: #EEEEEE;
+    --lightgrey: #EEEEEE;
+    --pastelgrey: #d7cdcd;
     --green-water-two: #64CCC5;
     --green-one: #176B87;
     --green-two: #135D66;
@@ -49,19 +50,23 @@ input:focus {
     outline: none;
 }
 
+li {
+    list-style-type: none;
+}
+
 .fs-10 {
     font-size: 0.8333333333rem !important;
 }
 
 .card-content {
     border-radius: 5px;
-    border-color: var(--black2);
+    border-color: var(--lightblack);
 }
 
 .navbar {
     height: 55px;
     padding: 0;
-    background-color: var(--black2);
+    background-color: var(--lightblack);
 }
 
 .navbar-top {
@@ -80,7 +85,7 @@ input:focus {
     height: 35px;
     font-size: 13px;
     font-weight: 300;
-    background-color: var(--black);
+    background-color: var(--deep-black);
 }
 
 .navbar-icon {
@@ -110,8 +115,82 @@ input:focus {
 .navbar-menu-options {
     font-size: 12px;
     font-weight: 300;
-    background-color: var(--black2);
+    background-color: var(--lightblack);
     margin-top: 7px !important;
+}
+
+
+.navbar-menu-scrollbar-link,
+.navbar-menu-link-collapse {
+    text-decoration: none;
+    color: var(--pastelgrey);
+    font-size: 13px;
+    font-weight: 400;
+    display: block;
+    padding-top: 12px;
+}
+
+.navbar-menu-scrollbar-link:hover,
+.navbar-menu-link-collapse:hover {
+    color: white;
+    transition: all 0.2s ease-in-out;
+    font-size: 13.1px;
+}
+
+.navbar-menu-scrollbar-link-icon,
+.navbar-menu-link-icon-collapse {
+    font-size: 16px;
+}
+
+.navbar-menu-scrollbar-link-icon:hover,
+.navbar-menu-link-icon-collapse:hover{
+    color: white;
+    transition: all 0.2s ease-in-out;
+    font-size: 17px;
+}
+
+.navbar-menu-link-collapse::after {
+    content: "";
+    display: block;
+    position: absolute;
+    right: 5px;
+    top: 65%;
+    width: 0.4rem;
+    height: 0.4rem;
+    border-right: 1px solid var(--pastelgrey);
+    border-bottom: 1px solid var(--pastelgrey);
+    transform: translateY(-50%) rotate(45deg);
+    transition: all 0.2s ease-in-out;
+    transform-origin: center;
+    transition-property: transform, border-color;
+}
+
+.navbar-menu-link-collapse[aria-expanded=true]::after {
+    transform: translateY(-50%) rotate(-136deg); 
+}
+
+.menu-text {
+    margin-left: 10px;
+}
+
+.submenu-link {
+    text-decoration: none;
+    color: var(--pastelgrey);
+    font-size: 13px;
+    font-weight: 400;
+    display: block;
+    padding-bottom: 0;
+}
+
+.submenu-link:hover {
+    color: white;
+    transition: all 0.2s ease-in-out;
+    font-size: 13.1px;
+}
+
+.navbar-nav .nav-item {
+    text-align: justify; 
+    margin-left: 40px;
 }
 
 .footer {
@@ -120,5 +199,5 @@ input:focus {
     padding: 40px;
     font-size: 12px;
     font-weight: 300;
-    background-color: var(--black2);
+    background-color: var(--lightblack);
 }

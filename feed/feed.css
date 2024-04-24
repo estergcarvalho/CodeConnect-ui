@@ -1,7 +1,7 @@
 .card-post {
     padding: 0;
     border-radius: 5px;
-    border-color: var(--black2);
+    border-color: var(--lightblack);
     margin-bottom: 15px;
 }
 
@@ -11,7 +11,7 @@
 }
 
 .card-create-post-body {
-    background-color: var(--black2);
+    background-color: var(--lightblack);
     border-radius: 5px;
     height: 210px;
 }
@@ -39,12 +39,12 @@
 }
 
 .card-post-create-text textarea {
-    background-color: var(--black);
+    background-color: var(--deep-black);
     border-radius: 3px;
     border-top: none;
-    border-right: 1px solid var(--black2);
+    border-right: 1px solid var(--lightblack);
     border-bottom: none;
-    border-left: 1px solid var(--black2);
+    border-left: 1px solid var(--lightblack);
     font-size: 13px;
     padding: 5px 10px;
     height: 100px;
@@ -71,7 +71,7 @@
 }
 
 .card-header {
-    background-color: var(--grey-two);
+    background-color: var(--mediumgrey);
     border-radius: 5px;
     height: 65px;
     padding-top: 11px;
@@ -147,7 +147,7 @@
     font-weight: 400;
     border: none;
     border-radius: 10px;
-    background-color: var(--grey-two);
+    background-color: var(--mediumgrey);
 }
 
 .card-comment-response {
@@ -166,7 +166,7 @@
 
 .card-comment-response-text {
     margin-left: 12px;
-    background-color: var(--grey-one);
+    background-color: var(--darkgrey);
     padding: 10px;
     border-radius: 10px;
     display: flex;
@@ -230,6 +230,13 @@
     margin-right: 8px;
 }
 
+.card-reactions i {
+    font-size: 12px;
+    float: inline-start;
+    margin-top: 3px;
+    color: var(--pastelgrey);
+}
+
 .card-reactions img {
     width: 13px;
     margin-top: 5px;
@@ -259,16 +266,16 @@
 }
 
 .card-timeline {
-    border-color: var(--black2);
+    border-color: var(--lightblack);
 }
 
 .card-timeline-header {
     height: 49px;
-    border: 1px solid var(--black2);
+    border: 1px solid var(--lightblack);
 }
 
 .card-timeline-title {
-    background-color: var(--black2);
+    background-color: var(--lightblack);
     border: none;
 }
 
@@ -296,7 +303,7 @@
 .card-timeline-icon::before {
     content: "";
     position: absolute;
-    border-left: 2px solid var(--black2);
+    border-left: 2px solid var(--lightblack);
     height: 85px;
     left: 23px;
     top: 92px;
@@ -318,7 +325,7 @@
 .card-timeline-content {
     position: relative;
     display: flex;
-    background: var(--black2);
+    background: var(--lightblack);
     padding: 5px;
     border-radius: 5px;
     margin-bottom: 30px;
@@ -331,7 +338,7 @@
     height: 0;
     border-style: solid;
     border-width: 10px 10px 0;
-    border-color: var(--black2) transparent;
+    border-color: var(--lightblack) transparent;
     bottom: calc(100% + -20px);
     left: -12px;
     transform: rotate(88deg);

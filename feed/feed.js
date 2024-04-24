@@ -4,7 +4,7 @@ $(document).ready(function() {
 
         var id = $(this).prop("id");
         
-        $("#img-like-" + id).attr("src", "/assets/icons/curtido.png");
+        $("#img-like-" + id).removeClass("bi-heart").addClass("bi-heart-fill");
     });
 
     $(".card-reactions-comment").click(function(e){
