@@ -43,12 +43,6 @@
     font-weight: 500;
 }
 
-.card-friends-user-name:hover {
-    color: var(--green-water);
-    font-size: 13.2px;
-    transition: all 0.2s ease-in-out;
-}
-
 .card-friends-user span {
     display: block;
     font-size: 11px;
