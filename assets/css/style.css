@@ -126,12 +126,12 @@ li {
 }
 
 .navbar-menu-notification {
-    width: 280px; 
-    border: none; 
+    width: 280px;
+    border: none;
 }
 
 .navbar-menu-notification .card-header {
-    height: 40px;
+    height: 35px;
 }
 
 .navbar-menu-notification-text {
@@ -144,7 +144,6 @@ li {
 .card-notification {
     height: 250px;
     overflow-y: scroll;
-    
 }
 
 .card-notification a {
@@ -185,7 +184,9 @@ li {
 }
 
 .card-footer-notification {
-    height: 40px;
+    height: 35px;
+    padding: 5px;
+    font-size: 12px;
 }
 
 .card-footer-notification .card-footer-link {
