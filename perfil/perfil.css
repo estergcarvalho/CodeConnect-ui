@@ -28,7 +28,7 @@
     height: 100%;
 }
 
-.card-body {
+.card-profile-user {
     background-color: var(--lightblack);;
     height: 230px;
 }
