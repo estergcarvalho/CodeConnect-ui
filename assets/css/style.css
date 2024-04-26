@@ -134,11 +134,13 @@ li {
     height: 35px;
 }
 
-.navbar-menu-notification-text {
+.card-menu-notification-header {
+    margin: 0;
+}
+
+.card-menu-notification-header span {
     font-size: 13px;
     font-weight: 400;
-    padding-bottom: 10px;
-    padding-left: 5px;
 }
 
 .card-notification {
@@ -185,7 +187,6 @@ li {
 
 .card-footer-notification {
     height: 35px;
-    padding: 5px;
     font-size: 12px;
 }
 
