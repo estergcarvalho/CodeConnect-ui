@@ -293,6 +293,10 @@
     color: var(--green-water-two);
 }
 
+.card-timeline-activity-body {
+    padding: 15px 15px 0 15px
+}
+
 .card-timeline {
     border-color: var(--lightblack);
 }
@@ -328,13 +332,13 @@
     font-size: 20px;
 }
 
-.card-timeline-icon::before {
+.card-timeline-line::before {
     content: "";
     position: absolute;
     border-left: 2px solid var(--lightblack);
-    height: 85px;
+    height: 82px;
     left: 23px;
-    top: 92px;
+    margin-top: 29px;
     transform: translateX(-55%);
     z-index: -1;
 }
@@ -427,10 +431,14 @@
     padding-top: 5px;
 }
 
+.card-music-divisor {
+    margin: 5px 10px;
+    color: var(--bs-border-color);
+}
+
 .list-group-item-music .list-group-item {
-    border: 1px solid var(--darkgrey);
-    border-top: none;
-    padding: 8px;
+    border: none;
+    padding: 8px 15px;
 }
 
 .card-music-listening-image img {
@@ -443,19 +451,59 @@
 }
 
 .card-music-content-track {
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 600;
     color: white;
 }
 
 .card-music-content-artist {
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 400;
-    margin-bottom: 5px;
+    margin-bottom: 2px;
     color: white;
 }
 
 .card-music-content-time {
-    font-size: 9px;
+    font-size: 10px;
+    font-weight: 300;
+}
+
+.card-tab-news-header {
+    height: 49px;
+    border: 1px solid var(--lightblack);
+}
+
+.card-tab-news h5 {
+    font-size: 13px;
+    font-weight: 400;
+    padding-top: 5px;
+}
+
+.card-tab-news-content .list-group-item {
+    border: 1px solid var(--darkgrey);
+    border: none;
+    padding: 8px 15px;
+}
+
+.card-tab-news-content a {
+    text-decoration: none;
+}
+
+.card-tab-news-content-title {
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 2px;
+    color: var(--green-water-two)
+}
+
+.card-tab-news-content-description {
+    font-size: 11px;
+    font-weight: 300;
+    margin-bottom: 5px;
+    color: white;
+}
+
+.card-tab-news-content-time {
+    font-size: 10px;
     font-weight: 300;
 }
