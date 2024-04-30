@@ -443,19 +443,59 @@
 }
 
 .card-music-content-track {
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 600;
     color: white;
 }
 
 .card-music-content-artist {
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 400;
-    margin-bottom: 5px;
+    margin-bottom: 2px;
     color: white;
 }
 
 .card-music-content-time {
-    font-size: 9px;
+    font-size: 10px;
+    font-weight: 300;
+}
+
+.card-tab-news-header {
+    height: 49px;
+    border: 1px solid var(--lightblack);
+}
+
+.card-tab-news h5 {
+    font-size: 13px;
+    font-weight: 400;
+    padding-top: 5px;
+}
+
+.card-tab-news-content .list-group-item{
+    border: 1px solid var(--darkgrey);
+    border-top: none;
+    padding: 8px;
+}
+
+.card-tab-news-content a {
+    text-decoration: none;
+}
+
+.card-tab-news-content-title {
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 2px;
+    color: var(--green-water-two)
+}
+
+.card-tab-news-content-description {
+    font-size: 11px;
+    font-weight: 300;
+    margin-bottom: 5px;
+    color: white;
+}
+
+.card-tab-news-content-time {
+    font-size: 10px;
     font-weight: 300;
 }
