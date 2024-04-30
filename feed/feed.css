@@ -378,3 +378,61 @@
     width: 30px;
     border-radius: 90%;
 }
+
+.card-playlist-music {
+    border-color: var(--lightblack);
+}
+
+.card-playlist-music-header {
+    height: 49px;
+    border: 1px solid var(--lightblack);
+}
+
+
+.card-playlist-title {
+    background-color: var(--lightblack);
+    border: none;
+}
+
+.card-playlist-title h5 {
+    font-size: 13px;
+    font-weight: 400;
+    padding-top: 5px;
+}
+
+.list-group-item-music .list-group-item {
+    border: 1px solid var(--darkgrey);
+    border-top: none;
+    padding: 8px;
+}
+
+.card-music-listening {
+    height: 280px;
+}
+
+.card-music-listening-image img {
+    width: 45px;
+    height: 45px;
+}
+
+.card-music-content {
+    padding-left: 8px;
+}
+
+.card-music-content-track {
+    font-size: 11px;
+    font-weight: 600;
+    color: white;
+}
+
+.card-music-content-artist {
+    font-size: 10px;
+    font-weight: 400;
+    margin-bottom: 5px;
+    color: white;
+}
+
+.card-music-content-time {
+    font-size: 9px;
+    font-weight: 300;
+}
