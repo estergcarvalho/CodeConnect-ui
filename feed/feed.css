@@ -265,6 +265,34 @@
     margin-bottom: 22px;
 }
 
+.card-birthday {
+    background-color: var(--mediumgrey);
+    border-radius: 5px;
+    height: 50px;
+}
+
+.card-birthday-content {
+    width: 100%;
+    padding: 10px;
+}
+
+.card-birthday-icon {
+    font-size: 16px;
+    color: var(--green-water-two);
+} 
+
+.card-birthday-link {
+    font-size: 12px;
+    font-weight: 200;
+    text-decoration: none;
+    color: white;
+}
+
+.card-birthday-link span {
+    font-weight: 600;
+    color: var(--green-water-two);
+}
+
 .card-timeline {
     border-color: var(--lightblack);
 }
