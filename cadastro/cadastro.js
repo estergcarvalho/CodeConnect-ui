@@ -1,9 +1,11 @@
 $(document).ready(function() {
-    $('#form-cadastro').submit(function(event) {
+    $('#form-cadastro').submit(function (event) {
         event.preventDefault();
-        
+
         validaCampos();
     });
+
+    textoDinamico();
 });
 
 function validaCampos() {
@@ -20,14 +22,21 @@ function validaCampos() {
         alert("É necessário preencher o campo e-mail.");
     }
 
-    if (senha.legth < 5) {
+    if (senha.length < 5) {
         alert("A senha deve ter o minimo de 5 caracteres");
     }
 
     if (senha !== confirmasenha) {
         alert("As senhas devem ser iguais");
     }
- 
-    alert("Cadastro realizado com sucesso");
 
+    alert("Cadastro realizado com sucesso");
+}
+
+function textoDinamico() {
+    new Typed('#textDynamic', {
+        strings: ['#NovasConexões', '#Tecnologias', '#FaçaParte'],
+        typeSpeed: 80,
+        loop: true,
+    });
 }
