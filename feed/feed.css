@@ -133,6 +133,7 @@
     border-bottom: 10px;
     padding-left: 15px;
     width: 100%;
+    height: 72px;
 }
 
 .card-comment-text label {
@@ -148,6 +149,20 @@
     border: none;
     border-radius: 10px;
     background-color: var(--mediumgrey);
+}
+
+.card-comment-btn {
+    font-size: 11px;
+    background-color: var(--btn);
+    border-radius: 5px;
+    border: none;
+    font-weight: 400;
+    padding: 4px 15px;
+    display: none;
+}
+
+.card-comment-btn:hover {
+    background-color: var(--btn-hover);
 }
 
 .card-comment-response {
