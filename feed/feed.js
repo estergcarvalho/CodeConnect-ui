@@ -2,6 +2,9 @@ $(document).ready(function() {
     reacaoCutir();
     reacaoComentario();
     comentar();
+    carregarAtividadesRecentes();   
+    carregarMusicas();
+    carregarTabNews();
 });
 
 function reacaoCutir() {
@@ -33,6 +36,29 @@ function comentar() {
         if (texto !== "") {
             $(this).siblings("#btnComentar").show();
         }
-    });
-   
+    }); 
+}
+
+function carregarAtividadesRecentes() {
+    $(".card-timeline-activity-body").LoadingOverlay("show");
+    
+    setTimeout(function() {
+        $(".card-timeline-activity-body").LoadingOverlay("hide");
+    }, 3000);
+}
+
+function carregarMusicas() {
+    $(".card-playlist-music").LoadingOverlay("show");
+
+    setTimeout(function() {
+        $(".card-playlist-music").LoadingOverlay("hide");
+    },3000);
+}
+
+function carregarTabNews() {
+    $(".card-tab-news").LoadingOverlay("show");
+
+    setTimeout(function() {
+        $(".card-tab-news").LoadingOverlay("hide");
+    },3000);
 }
