@@ -5,7 +5,7 @@ $(document).ready(function() {
   estatisticasComentarios();
   graficoPostagemMes();
   graficoMesCurtidas();
-  graficoCargoamigos();
+  graficoCargoAmigos();
 });
 
 function estatisticasPostagens() {
@@ -61,7 +61,7 @@ function graficoPostagemMes() {
       }
     ]
   };
-  
+
   amigos.setOption(optionAmigos);
 }
 
