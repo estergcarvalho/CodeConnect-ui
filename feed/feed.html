@@ -38,14 +38,11 @@
                                         <p>Publicar</p>
                                     </div>
 
-                                    <div class="card-post-create-text">
+                                    <div class="card-post-create-text text-end">
                                         <textarea class="" id="publicacao" placeholder="Sobre o que você quer falar?"></textarea>
                                         <label class="form-label" for="publicacao"></label>
-                                    </div>
-
-                                    <div class="card-post-create-publish">
-                                        <button class="card-post-create-publish-btn" type="button">Publicar</button>
-                                    </div>
+                                        <button class="card-post-create-publish-btn mb-2" type="button">Publicar</button>
+                                    </div>  
                                 </div>
                             </div>
                         </div>
@@ -74,12 +71,82 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="card-body">
                                 <p class="card-post-text">
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
                                 </p>
                             </div>
-                            <div class="card-footer">
+                            <div class="card-footer pb-0">
+                                <div class="card-reactions-count">
+                                    <a href="#" class="card-reactions-count-likes">10 curtidas</a>
+                                    <a href="#">2 comentários</a>
+                                </div>
+
+                                <hr class="card-line card-line-count">
+
+                                <div class="card-reactions">
+                                    <a class="card-reactions-like" href="#" id="0">
+                                        <i class="bi bi-heart" id="img-like-1"></i>
+                                        <span>Curtir</span>
+                                    </a>
+
+                                    <a class="card-reactions-comment" href="#" id="0">
+                                        <i class="bi bi-chat"></i>
+                                        <span>Comentar</span>
+                                    </a>
+
+                                    <a href="#">
+                                        <i class="bi bi-share"></i>
+                                        <span>Compartilhar</span>
+                                    </a>
+                                </div>
+
+                                <hr class="card-line card-line-reactions">
+
+                                <div class="card-comment">
+                                    <img class="card-comment-avatar" src="/assets/img/usuarios/ana.jpg" alt="Foto de ana">
+    
+                                    <div class="card-comment-text mb-3">
+                                        <textarea class="card-comment-text-area" id="card-comment-text-1" placeholder="Escreva um comentário..."></textarea>
+                                        <label class="form-label d-none" for="card-comment-text-1"></label>
+                                        <button class="card-comment-btn" id="btnComentar" type="button">Comentar</button>
+                                    </div>     
+                                </div>
+                            </div>                        
+                        </div>
+
+                        <div class="card-post card">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="card-post-avatar col-2">
+                                        <a href="/perfil/perfil.html">
+                                            <img src="/assets/img/usuarios/caique.jpg" alt="Foto de Caique">
+                                        </a>
+                                    </div>
+                                    
+                                    <div class="col-10 position-relative">
+                                        <div class="card-post-user-name position-absolute top-50 translate-middle">
+                                            <div>
+                                                <a href="/perfil/perfil.html">Caique Nogueira</a>
+                                            </div>  
+                                            <div class="card-post-profession">
+                                                    Engenheiro Software
+                                            </div>  
+                                            <div class="card-post-date">
+                                                    1 hora
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <p class="card-post-text">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                                </p>
+                            </div>
+                            <div class="card-footer pb-0">
                                 <div class="card-reactions-count">
                                     <a href="#" class="card-reactions-count-likes">10 curtidas</a>
                                     <a href="#">2 comentários</a>
@@ -109,9 +176,9 @@
                                 <div class="card-comment">
                                     <img class="card-comment-avatar" src="/assets/img/usuarios/ana.jpg" alt="Foto de ana">
     
-                                    <div class="card-comment-text mb-2">
+                                    <div class="card-comment-text mb-3">
                                         <textarea class="card-comment-text-area" id="card-comment-text-1" placeholder="Escreva um comentário..."></textarea>
-                                        <label class="form-label" for="card-comment-text-1"></label>
+                                        <label class="form-label d-none" for="card-comment-text-1"></label>
                                         <button class="card-comment-btn" id="btnComentar" type="button">Comentar</button>
                                     </div>     
                                 </div>
@@ -156,6 +223,7 @@
                                 </div>
                             </div>                        
                         </div>
+
                         <div class="card-post card">
                             <div class="card-header">
                                 <div class="row">
@@ -180,12 +248,13 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="card-body">
                                 <p class="card-post-text">
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
                                 </p>
                             </div>
-                            <div class="card-footer">
+                            <div class="card-footer pb-0">
                                 <div class="card-reactions-count">
                                     <a href="#" class="card-reactions-count-likes">68 curtidas</a>
                                     <a href="#">2 comentários</a>
@@ -216,7 +285,7 @@
                                     <img class="card-comment-avatar" src="/assets/img/usuarios/ana.jpg" alt="Foto de Ana">
                                 
                                     <div class="card-comment-text">
-                                    <textarea class="" id="card-comment-text-2" placeholder="Escreva um comentário..."></textarea>
+                                    <textarea class="card-comment-text-2" id="card-comment-text-2" placeholder="Escreva um comentário..."></textarea>
                                     <label class="form-label" for="card-comment-text-2"></label>
                                     </div>     
                                 </div>
@@ -262,6 +331,7 @@
                             </div>                        
                         </div>
                     </div>
+
                     <div class="col-3 p-0">
                         <div class="card-timeline-container container ps-0">
                             <div class="card-birthday mb-3 position-relative">
@@ -279,6 +349,7 @@
                                         <h5>Atividades recentes</h5>
                                     </div>
                                 </div>
+
                                 <div class="card-body card-timeline-activity-body">
                                     <div class="card-timeline-activity row">
                                         <div class="card-timeline-icon card-timeline-line col-md-1 col-lg-2">
