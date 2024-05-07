@@ -20,7 +20,7 @@ function reacaoComentario() {
 
         var id = $(this).prop("id");
 
-        $("#card-comment-text-1" + id).focus();
+        $("#card-comment-text-" + id).focus();
     });
 }
 
@@ -34,7 +34,6 @@ function comentar() {
             $(this).siblings("#btnComentar").show();
         }
     });
-
 }
 
 function fazerComentario() {

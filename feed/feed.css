@@ -123,6 +123,7 @@
 .card-comment {
     margin-top: 5px;
     display: flex;
+
 }
 
 .card-comment-avatar {
@@ -135,10 +136,6 @@
     border-bottom: 10px;
     padding-left: 15px;
     width: 100%;
-}
-
-.card-comment-text label {
-    padding: 0;
 }
 
 .card-comment-text textarea {
@@ -161,6 +158,7 @@
     border: none;
     font-weight: 400;
     padding: 4px 15px;
+    margin-top: 8px;
     display: none;
 }
 
@@ -280,7 +278,7 @@
 }
 
 .card-line-reactions {
-    margin-bottom: 22px;
+    margin-bottom: 15px;
 }
 
 .card-birthday {
