@@ -2,13 +2,13 @@ $(document).ready(function() {
     reacaoCutir();
     reacaoComentario();
     comentar();
-    carregarAtividadesRecentes();   
+    carregarAtividadesRecentes();
     carregarMusicas();
     carregarTabNews();
 });
 
 function reacaoCutir() {
-    $(".card-reactions-like").click(function(e) {
+    $(".card-reactions-like").click(function (e) {
         e.preventDefault();
 
         var id = $(this).prop("id");
@@ -18,7 +18,7 @@ function reacaoCutir() {
 }
 
 function reacaoComentario() {
-    $(".card-reactions-comment").click(function(e) {
+    $(".card-reactions-comment").click(function (e) {
         e.preventDefault();
 
         var id = $(this).prop("id");
@@ -27,8 +27,8 @@ function reacaoComentario() {
     });
 }
 
-function comentar() {  
-    $(".card-comment-text-area").on("keyup", function() {
+function comentar() {
+    $(".card-comment-text-area").on("keyup", function () {
         $(this).siblings("#btnComentar").hide();
 
         var texto = $(this).val().trim();
@@ -36,29 +36,35 @@ function comentar() {
         if (texto !== "") {
             $(this).siblings("#btnComentar").show();
         }
-    }); 
+    });
 }
 
 function carregarAtividadesRecentes() {
-    $(".card-timeline-activity-body").LoadingOverlay("show");
-    
-    setTimeout(function() {
-        $(".card-timeline-activity-body").LoadingOverlay("hide");
+    var cardTimeline = $(".card-timeline-activity-body");
+
+    cardTimeline.LoadingOverlay("show");
+
+    setTimeout(function () {
+        cardTimeline.LoadingOverlay("hide");
     }, 3000);
 }
 
 function carregarMusicas() {
-    $(".card-playlist-music").LoadingOverlay("show");
+    var cardPlaylistMusica = $(".card-playlist-music-body");
 
-    setTimeout(function() {
-        $(".card-playlist-music").LoadingOverlay("hide");
-    },3000);
+    cardPlaylistMusica.LoadingOverlay("show");
+
+    setTimeout(function () {
+        cardPlaylistMusica.LoadingOverlay("hide");
+    }, 3000);
 }
 
 function carregarTabNews() {
-    $(".card-tab-news").LoadingOverlay("show");
+    var cardTabNews = $(".card-tab-news-body");
 
-    setTimeout(function() {
-        $(".card-tab-news").LoadingOverlay("hide");
-    },3000);
+    cardTabNews.LoadingOverlay("show");
+
+    setTimeout(function () {
+        cardTabNews.LoadingOverlay("hide");
+    }, 3000);
 }
