@@ -13,7 +13,6 @@
 .card-create-post-body {
     background-color: var(--lightblack);
     border-radius: 5px;
-    height: 210px;
 }
 
 .card-create-post-user {
@@ -38,6 +37,11 @@
     width: 100%;
 }
 
+.card-post-create-text {
+    min-height: 100px;
+    width: 100%;
+}
+
 .card-post-create-text textarea {
     background-color: var(--deep-black);
     border-radius: 3px;
@@ -47,14 +51,10 @@
     border-left: 1px solid var(--lightblack);
     font-size: 13px;
     padding: 5px 10px;
+    max-height: 250px;
     height: 100px;
     width: 100%;
-}
-
-.card-post-create-publish {
-    float: right;
-    margin-right: 15px;
-    margin-top: -15px;
+    display: block;
 }
 
 .card-post-create-publish-btn {
@@ -64,6 +64,8 @@
     font-size: 13px;
     font-weight: 400;
     padding: 4px 15px;
+    margin-top: 8px;
+    margin-right: 10px;
 }
 
 .card-post-create-publish-btn:hover {
@@ -133,7 +135,6 @@
     border-bottom: 10px;
     padding-left: 15px;
     width: 100%;
-    height: 72px;
 }
 
 .card-comment-text label {
@@ -149,6 +150,8 @@
     border: none;
     border-radius: 10px;
     background-color: var(--mediumgrey);
+    display: block;
+    max-height: 250px;
 }
 
 .card-comment-btn {
@@ -294,7 +297,7 @@
 .card-birthday-icon {
     font-size: 16px;
     color: var(--green-water-two);
-} 
+}
 
 .card-birthday-link {
     font-size: 12px;
