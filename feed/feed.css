@@ -37,6 +37,11 @@
     width: 100%;
 }
 
+.card-post-publish-loading {
+    height: 40px;
+    display: none;
+}
+
 .card-post-create-text {
     min-height: 100px;
     width: 100%;
@@ -66,6 +71,7 @@
     padding: 4px 15px;
     margin-top: 8px;
     margin-right: 10px;
+    
 }
 
 .card-post-create-publish-btn:hover {
