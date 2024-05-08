@@ -7,10 +7,93 @@ $(document).ready(function() {
     carregarTabNews();
     fazerComentario();
     fazerPublicacao();
+    publicarFeed();
+    habilitarPublicacao();
 });
 
+function publicarFeed() {
+    $("#btn-publicar").click(function() {
+        var cardPublicarFeed = $(".card-post-publish-loading");
+        cardPublicarFeed.fadeIn();
+        cardPublicarFeed.LoadingOverlay("show");
+
+        var desabilitarPublicacao = $('.card-post-create-publish-btn');
+        desabilitarPublicacao.attr('disabled', true);
+
+        var publicacao = $("#publicacao");
+        var publicacaoTexto = publicacao.val();
+
+        var cardPost = '<div class="card-post card">'+
+            '<div class="card-header">'+
+                '<div class="row">'+
+                    '<div class="card-post-avatar col-2">'+
+                        '<a href="/perfil/perfil.html">'+
+                            '<img src="/assets/img/usuarios/caique.jpg" alt="Foto de Caique">'+
+                        '</a>'+
+                    '</div>'+
+                    '<div class="col-10 position-relative">'+
+                        '<div class="card-post-user-name position-absolute top-50 translate-middle">'+
+                            '<div>'+
+                                '<a href="/perfil/perfil.html">Teste2</a>'+
+                            '</div>  '+
+                            '<div class="card-post-profession">'+
+                                    'Engenheiro Software'+
+                            '</div>  '+
+                            '<div class="card-post-date">'+
+                                    '1 hora'+
+                            '</div>'+
+                        '</div>'+
+                    '</div>'+
+                '</div>'+
+            '</div>'+
+            '<div class="card-body">'+
+                '<p class="card-post-text">'+
+                    publicacaoTexto +
+                '</p>'+
+            '</div>'+
+            '<div class="card-footer pb-0">'+
+                '<div class="card-reactions-count">'+
+                    '<a href="#" class="card-reactions-count-likes">10 curtidas</a>'+
+                    '<a href="#">2 comentários</a>'+
+                '</div>'+
+                '<hr class="card-line card-line-count">'+
+                '<div class="card-reactions">'+
+                    '<a class="card-reactions-like" href="#" id="0">'+
+                        '<i class="bi bi-heart" id="img-like-1"></i>'+
+                        '<span>Curtir</span>'+
+                    '</a>'+
+                    '<a class="card-reactions-comment" href="#" id="0">'+
+                        '<i class="bi bi-chat"></i>'+
+                        '<span>Comentar</span>'+
+                    '</a>'+
+                    '<a href="#">'+
+                        '<i class="bi bi-share"></i>'+
+                        '<span>Compartilhar</span>'+
+                    '</a>'+
+                '</div>'+
+                '<hr class="card-line card-line-reactions">'+
+                '<div class="card-comment">'+
+                    '<img class="card-comment-avatar" src="/assets/img/usuarios/ana.jpg" alt="Foto de ana">'+
+                    '<div class="card-comment-text mb-3">'+
+                        '<textarea class="card-comment-text-area" id="card-comment-text-1" placeholder="Escreva um comentário..."></textarea>'+
+                        '<label class="form-label d-none" for="card-comment-text-1"></label>'+
+                        '<button class="card-comment-btn" id="btnComentar" type="button">Comentar</button>'+
+                    '</div>'+
+                '</div>'+
+            '</div>'+
+        '</div>';
+
+        setTimeout(function() {
+            $(".card-post-container").prepend(cardPost);
+            cardPublicarFeed.LoadingOverlay("hide");
+            cardPublicarFeed.fadeOut();
+            publicacao.val('');
+        }, 3000);
+    });
+}
+
 function reacaoCurtir() {
-    $(".card-reactions-like").click(function (e) {
+    $(".card-reactions-like").click(function(e) {
         e.preventDefault();
 
         $(this).find("i.bi-heart").removeClass("bi-heart").addClass("bi-heart-fill");
@@ -18,7 +101,7 @@ function reacaoCurtir() {
 }
 
 function reacaoComentario() {
-    $(".card-reactions-comment").click(function (e) {
+    $(".card-reactions-comment").click(function(e) {
         e.preventDefault();
 
         var id = $(this).prop("id");
@@ -45,7 +128,7 @@ function carregarAtividadesRecentes() {
 
     cardTimeline.LoadingOverlay("show");
 
-    setTimeout(function () {
+    setTimeout(function() {
         cardTimeline.LoadingOverlay("hide");
     }, 3000);
 }
@@ -55,7 +138,7 @@ function carregarMusicas() {
 
     cardPlaylistMusica.LoadingOverlay("show");
 
-    setTimeout(function () {
+    setTimeout(function() {
         cardPlaylistMusica.LoadingOverlay("hide");
     }, 3000);
 }
@@ -65,7 +148,7 @@ function carregarTabNews() {
 
     cardTabNews.LoadingOverlay("show");
 
-    setTimeout(function () {
+    setTimeout(function() {
         cardTabNews.LoadingOverlay("hide");
     }, 3000);
 }
@@ -83,13 +166,26 @@ function fazerPublicacao() {
 }
 
 function fazerComentario() {
-    $("#card-comment-text-1").on('input', function() {
+    $(".card-comment-text-area").on('input', function() {
         $(this).css('height', this.scrollHeight + 'px');
 
         var texto = $(this).val().trim();
 
         if (texto === "") {
             $(this).css('height', '');
+        }
+    });
+}
+
+function habilitarPublicacao() {
+    $("#publicacao").on('input', function() {
+        var habilitarBtn = $('.card-post-create-publish-btn');
+        var publicacao = $(this).val().trim();
+
+        if (publicacao === "") {
+            habilitarBtn.attr('disabled'); 
+        } else {
+            habilitarBtn.removeAttr('disabled'); 
         }
     });
 }
