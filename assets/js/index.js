@@ -10,10 +10,10 @@ $(document).ready(function() {
         size: 13
     });
 
-    gerarToken();
+    validarToken();
 });
 
-function gerarToken() {
+function validarToken() {
     var token = localStorage.getItem("token");
 
     if (token == null) {
