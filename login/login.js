@@ -2,8 +2,9 @@ $(document).ready(function() {
     $('#form-login').submit(function(event) {
         event.preventDefault();
 
-        validaCampos();
-        login();
+        if(validaCampos()) {
+            login();
+        }
     });
 });
 
@@ -12,12 +13,16 @@ function validaCampos() {
     var senha = $("#senha").val();
 
     if (email.trim() === "") {
-        alert("É necessário preencher o campo e-mail.");
+        alert("É necessário preencher o campo e-mail");
+        return false;
     }
 
     if (senha.trim() === "") {
         alert("É necessário preencher o campo de senha");
+        return false;
     }
+
+    return true;
 }
 
 function login() {
