@@ -49,3 +49,8 @@
     color: white;
     font-weight: 300;
 }
+
+.card-post-list-friends-loading {
+    height: auto;
+    display: none;
+}
