@@ -13,12 +13,12 @@ function listarAmigos() {
         url: "http://localhost:8080/usuarios/amigos",
         type: 'GET',
         dataType: "json",
-        headers: {'Authorization': 'Bearer '+ token},
+        headers: {'Authorization': 'Bearer ' + token},
         success: function(data) {
             var amigos = data.amigos;
             var totalAmigos = data.total;
 
-            $('#total-amigos').html('<h5>Amigos <span>' + '(' + totalAmigos + ')' + '</span></h5>');
+            $('#total-amigos').html('<span>' + '(' + totalAmigos + ')' + '</span>');
             
             amigos.forEach(function(amigo) {
                 $('#lista-amigos').append(
@@ -34,10 +34,9 @@ function listarAmigos() {
                 );
             });
 
-            setTimeout(function () {
-                var listarAmigos = $(".card-post-list-friends-loading");
-                listarAmigos.LoadingOverlay("hide");
-            }, 2000);
+            var listarAmigos = $(".card-post-list-friends-loading");
+            listarAmigos.LoadingOverlay("hide");
+         
         },
         error: function(status, response, error) {
             console.error("Erro ao listar amigos" + error);
