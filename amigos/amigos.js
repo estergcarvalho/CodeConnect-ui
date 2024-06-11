@@ -18,25 +18,24 @@ function listarAmigos() {
             var amigos = data.amigos;
             var totalAmigos = data.total;
 
-            $('#total-amigos').html('<span>' + '(' + totalAmigos + ')' + '</span>');
+            $('#total-amigos').html('(' + totalAmigos + ')');
             
             amigos.forEach(function(amigo) {
                 $('#lista-amigos').append(
-                    '<div class="card-friends-content align-items-center text-center col-2"> ' +
+                '<div class="card-friends-content align-items-center text-center col-2"> ' +
                     '<div class="card-friends-user">' +
-                    '<a class="card-friends-avatar" href="/perfil/perfil.html">' +
-                    '<img class="img-thumbnail rounded-circle" alt="image-user" src="/assets/img/usuarios/luiz.jpg">' +
-                    '</a>' +
-                    '<p class="card-friends-user-name mb-1">' + amigo.nome + '</p> ' +
-                    '<span></span>' +
+                        '<a class="card-friends-avatar" href="/perfil/perfil.html">' +
+                            '<img class="img-thumbnail rounded-circle" alt="image-user" src="/assets/img/usuarios/luiz.jpg">' +
+                            '<p class="card-friends-user-name mb-1">' + amigo.nome + '</p> ' +
+                        '</a>' +
+                        '<span></span>' +
                     '</div>' +
-                    '</div>' 
+                '</div>' 
                 );
             });
 
             var listarAmigos = $(".card-post-list-friends-loading");
             listarAmigos.LoadingOverlay("hide");
-         
         },
         error: function(status, response, error) {
             console.error("Erro ao listar amigos" + error);
