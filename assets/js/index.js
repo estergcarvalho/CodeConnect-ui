@@ -20,3 +20,9 @@ function validarToken() {
         window.location.href = "/login/login.html";
     }
 }
+
+function logout() { 
+    localStorage.removeItem("token");
+
+    window.location.href = "/login/login.html";
+}
