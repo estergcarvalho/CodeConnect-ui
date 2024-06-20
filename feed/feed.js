@@ -195,7 +195,7 @@ function listarPostagens() {
     var token = localStorage.getItem('token');
 
     $.ajax({
-        url: "http://localhost:8080/posts",
+        url: "http://localhost:8080/posts/recentes",
         type: 'GET',
         dataType: "json",
         headers: {'Authorization': 'Bearer ' + token},
