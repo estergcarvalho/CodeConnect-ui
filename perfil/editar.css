@@ -1,0 +1,31 @@
+.cadastro-form {
+    background: var(--darkgrey);
+    font-weight: 200;
+    padding: 55px 40px;
+    width: 80%;
+    height: 100%;
+}
+
+.cadastro-text {
+    font-size: 25px;
+    font-weight: 300;
+    margin-bottom: 17px;
+}
+
+.cadastro-btn {
+    color: var(--lightgrey);
+    background-color: var(--green-background);
+    font-weight: 100;
+    margin-top: 35px;
+    border-radius: 5px;
+}
+
+.cadastro-btn button {
+    background-color: var(--green-background);
+}
+
+.cadastro-btn button:hover {
+    color: var(--lightgrey);
+    background-color: var(--btn-hover);
+    transform: scale(1.3)ease;
+}
