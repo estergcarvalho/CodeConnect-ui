@@ -31,7 +31,7 @@ function publicarFeed() {
             type: 'POST',
             contentType: 'application/json',
             headers: {'Authorization': 'Bearer ' + token},
-            data: JSON.stringify({descricao: publicacaoTexto }),
+            data: JSON.stringify({ descricao: publicacaoTexto }),
             success: function(response) {
                 $(".card-post-container").prepend(
                     `<div class="card-post card">
@@ -144,7 +144,7 @@ function listarPostagens() {
         success: function(data) {
             data.forEach(function(post) {
                 if (data != null) {
-                $('#lista-postagem').prepend(
+                $('#lista-postagem').append(
                         `<div class="card-post card">
                             <div class="card-header">
                                 <div class="row">
