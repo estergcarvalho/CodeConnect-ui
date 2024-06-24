@@ -54,7 +54,7 @@
     font-weight: 300;
 }
 
-.card-body-user-add-btn {
+.card-body-user-edit-btn {
     background-color: var(--btn);
     border-radius: 5px;
     border: none;
@@ -63,15 +63,19 @@
     padding: 5px 15px;
 }
 
-.card-body-user-add-btn:hover {
+.card-body-user-edit-btn:hover {
     background-color: var(--btn-hover);
+}
+
+.card-body-user-edit-btn a {
+    text-decoration: none;
+    color: white;
 }
 
 .card-body-profile-social-media {
     display: flex;
     float: right;
     margin-right: 15px;
-
 }
 
 .card-body-profile-social-media img {
@@ -148,7 +152,6 @@
 .card-comment {
     margin-top: 5px;
     display: flex;
-
 }
 
 .card-comment-avatar {
@@ -190,6 +193,7 @@
 .card-comment-btn:hover {
     background-color: var(--btn-hover);
 }
+
 
 .card-reactions-count a {
     font-size: 12px;

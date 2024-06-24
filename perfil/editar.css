@@ -1,0 +1,41 @@
+.form-edit-profile {
+    background: var(--darkgrey);
+    font-weight: 200;
+    padding: 55px 40px;
+    width: 90%;
+    height: 100%;
+}
+
+.form-edit-profile-text {
+    font-size: 30px;
+    font-weight: 300;
+    margin-bottom: 17px;
+}
+
+.form-edit-profile label {
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.form-edit-profile input {
+    font-size: 15px;
+    font-weight: 200;
+}
+
+.form-edit-profile-btn {
+    color: var(--lightgrey);
+    background-color: var(--green-background);
+    font-weight: 100;
+    margin-top: 30px;
+    border-radius: 5px;
+}
+
+.form-edit-profile-btn button {
+    background-color: var(--green-background);
+}
+
+.form-edit-profile-btn button:hover {
+    color: var(--lightgrey);
+    background-color: var(--btn-hover);
+    transform: scale(1.3) ease;
+}
