@@ -1,32 +1,32 @@
+.edit-text {
+    font-size: 16px;
+    font-weight: 300;
+    margin-top: 5px;
+}
+
 .form-edit-profile {
-    background: var(--darkgrey);
+    background: var(--lightblack);
+    border-radius: 5px;
+    border: 1px solid var(--lightblack);
     font-weight: 200;
-    padding: 55px 40px;
-    width: 90%;
+    width: 100%;
     height: 100%;
 }
 
-.form-edit-profile-text {
-    font-size: 30px;
-    font-weight: 300;
-    margin-bottom: 17px;
-}
-
 .form-edit-profile label {
-    font-size: 15px;
-    font-weight: 400;
+    font-size: 14px;
 }
 
 .form-edit-profile input {
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 200;
 }
 
 .form-edit-profile-btn {
     color: var(--lightgrey);
-    background-color: var(--green-background);
-    font-weight: 100;
-    margin-top: 30px;
+    margin: 20px 0;
+    float: inline-end;
+    width: 20%;
     border-radius: 5px;
 }
 
