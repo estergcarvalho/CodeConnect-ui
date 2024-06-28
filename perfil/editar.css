@@ -1,7 +1,7 @@
 .edit-text {
     font-size: 16px;
     font-weight: 300;
-    margin-top: 5px;
+    margin-top: 8px;
 }
 
 .form-edit-profile {
@@ -32,6 +32,7 @@
 
 .form-edit-profile-btn button {
     background-color: var(--green-background);
+    font-size: 14px;
 }
 
 .form-edit-profile-btn button:hover {
