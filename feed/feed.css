@@ -70,7 +70,7 @@
     font-weight: 400;
     padding: 4px 15px;
     margin-top: 8px;
-    margin-right: 10px;    
+    margin-right: 10px;
 }
 
 .card-post-create-publish-btn:hover {
@@ -87,6 +87,7 @@
 .card-post-avatar {
     height: 40px;
     width: 65px;
+    Margin-top: 1px;
 }
 
 .card-post-avatar img {
@@ -95,8 +96,13 @@
     border-radius: 50%;
 }
 
+.card-post-user {
+    padding-left: 0;
+}
+
 .card-post-user-name {
     left: 60px;
+    margin-top: -7px;
 }
 
 .card-post-user-name a {
@@ -274,7 +280,7 @@
 
 .card-line {
     opacity: 0.1;
-    margin:12px 0 8px 0;
+    margin: 12px 0 8px 0;
 }
 
 .card-line-count {

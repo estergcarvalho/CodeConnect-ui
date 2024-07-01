@@ -148,13 +148,13 @@ function listarPostagens() {
                         <div class="card-header">
                             <div class="row">
                                 <div class="card-post-avatar col-2">
-                                    <a <a href="/perfil/perfil.html?id=` + post.usuario.id + `">
+                                    <a href="/perfil/perfil.html?id=` + post.usuario.id + `">
                                         <img src="/assets/img/usuarios/caique.jpg" alt="Foto de Caique">
                                     </a>
                                 </div>
                                 
-                                <div class="col-10 position-relative">
-                                    <div class="card-post-user-name position-absolute top-50 translate-middle">
+                                <div class="col-10 card-post-user">
+                                    <div class="card-post-user-name">
                                         <div>
                                             <a href="/perfil/perfil.html?id=` + post.usuario.id + `">`+ post.usuario.nome +`</a>
                                         </div>  
