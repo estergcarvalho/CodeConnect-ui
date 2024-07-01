@@ -143,8 +143,6 @@ function listarPostagens() {
         headers: {'Authorization': 'Bearer ' + token},
         success: function(data) {
             data.forEach(function(post) {
-                console.log("Id usuario" , post.usuario.id)
-
                 $('#lista-postagem').prepend(
                     `<div class="card-post card">
                         <div class="card-header">
