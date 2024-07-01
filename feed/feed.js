@@ -143,12 +143,14 @@ function listarPostagens() {
         headers: {'Authorization': 'Bearer ' + token},
         success: function(data) {
             data.forEach(function(post) {
+                console.log("Id usuario" , post.usuario.id)
+
                 $('#lista-postagem').prepend(
                     `<div class="card-post card">
                         <div class="card-header">
                             <div class="row">
                                 <div class="card-post-avatar col-2">
-                                    <a href="/perfil/perfil.html">
+                                    <a <a href="/perfil/perfil.html?id=` + post.usuario.id + `">
                                         <img src="/assets/img/usuarios/caique.jpg" alt="Foto de Caique">
                                     </a>
                                 </div>
@@ -156,10 +158,10 @@ function listarPostagens() {
                                 <div class="col-10 position-relative">
                                     <div class="card-post-user-name position-absolute top-50 translate-middle">
                                         <div>
-                                            <a href="/perfil/perfil.html">Caique Nogueira</a>
+                                            <a href="/perfil/perfil.html?id=` + post.usuario.id + `">`+ post.usuario.nome +`</a>
                                         </div>  
                                         <div class="card-post-profession">
-                                            Engenheiro Software
+                                            `+ post.usuario.profissao +`
                                         </div>  
                                         <div class="card-post-date">
                                             1 hora
