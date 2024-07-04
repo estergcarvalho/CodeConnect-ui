@@ -15,6 +15,10 @@
     position: relative;
 }
 
+.card-profile-avatar-user {
+    cursor: pointer;
+}
+
 .card-profile-avatar-user:hover .card-profile-img-update {
     opacity: 1;
 }
