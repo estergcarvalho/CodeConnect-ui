@@ -37,12 +37,8 @@
     position: absolute;
     width: 150px;
     height: 150px;
-    min-height: 100%;
-    left: 0;
     bottom: 0;
     overflow: hidden;
-    will-change: transform, opacity, filter;
-    backface-visibility: hidden;
     z-index: 1;
     border-radius: 50%;
 }
