@@ -1,5 +1,6 @@
 $(document).ready(function() {
     listarPostagens();
+    carregarImagem();
 });
 
 function listarPostagens() {
@@ -88,4 +89,10 @@ function listarPostagens() {
                 console.error("Erro ao listar postagens" + error);
         }
     });
+}
+
+function carregarImagem() {
+    $('.card-profile-update-icon-text').click(function() {
+        $('#input-update-img').click();
+    });  
 }
