@@ -74,8 +74,8 @@ function redesSociais(usuario) {
                 case 'github':
                     imagem = 'github.png';
                     break;
-                case 'instagram':
-                    imagem = 'instagram.png';
+                case 'linkedin':
+                    imagem = 'linkedin.png';
                     break;
                 case 'youtube':
                     imagem = 'youtube.png';
