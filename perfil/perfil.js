@@ -27,11 +27,12 @@ function carregarPerfilUsuario() {
     
                             <p>`+ usuario.estado +`, `+ usuario.pais +`</p>
                              
-                            <div id="botao-perfil">teste</div>
+                            <div id="botao-perfil"></div>
                         </div>
                         <div class="col-4" id="redes-sociais"></div>
                     </div>`
                 );
+                
                 adicionarBotao(usuario);
                 redesSociais(usuario);
             },
