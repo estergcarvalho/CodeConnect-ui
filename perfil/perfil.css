@@ -16,6 +16,61 @@
 }
 
 .card-profile-avatar-user {
+    cursor: pointer;
+}
+
+.card-profile-avatar-user:hover .card-profile-img-update {
+    opacity: 1;
+}
+
+.card-profile-avatar-user:hover .card-profile-update-icon-text {
+    opacity: 1;
+}
+
+.card-profile-img-update {
+    position: absolute;
+    height: 50%;
+    width: 100%;
+    bottom: 0;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.card-profile-img-update-opacity {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    bottom: 0;
+    overflow: hidden;
+    z-index: 1;
+    border-radius: 50%;
+}
+
+.card-profile-img-update-opacity::before {
+    position: absolute;
+    content: "";
+    background: rgba(0, 0, 0, 0.469);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.card-profile-update-icon-text {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    bottom: 60px;
+    opacity: 0;
+}
+
+.card-profile-update-text {
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.card-profile-avatar-user {
     width: 150px;
     height: 150px;
     position: absolute;
@@ -29,7 +84,7 @@
 }
 
 .card-profile-user {
-    background-color: var(--lightblack);;
+    background-color: var(--lightblack);
     height: 230px;
 }
 
@@ -243,7 +298,7 @@
 
 .card-line {
     opacity: 0.1;
-    margin:12px 0 8px 0;
+    margin: 12px 0 8px 0;
 }
 
 .card-line-count {

@@ -1,8 +1,9 @@
 $(document).ready(function() {
-    listarPostagens();
     carregarPerfilUsuario();
     adicionarBotao();
     redesSociais();
+    listarPostagens();
+    carregarImagem();
 });
 
 function carregarPerfilUsuario() {
@@ -182,4 +183,10 @@ function listarPostagens() {
             console.error("Erro ao listar postagens" + error);
         }
     });
+}
+
+function carregarImagem() {
+    $('.card-profile-update-icon-text').click(function() {
+        $('#input-update-img').click();
+    });  
 }
