@@ -143,13 +143,13 @@ function listarPostagens() {
         headers: {'Authorization': 'Bearer ' + token},
         success: function(data) {
             data.forEach(function(post) {
-                $('#lista-postagem').prepend(
+                $('#lista-postagem').append(
                     `<div class="card-post card">
                         <div class="card-header">
                             <div class="row">
                                 <div class="card-post-avatar col-2">
                                     <a href="/perfil/perfil.html?id=` + post.usuario.id + `">
-                                        <img src="/assets/img/usuarios/caique.jpg" alt="Foto de Caique">
+                                        <img src="/assets/img/usuarios/ana.jpg" alt="Foto de Ana">
                                     </a>
                                 </div>
                                 

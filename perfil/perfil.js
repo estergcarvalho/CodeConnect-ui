@@ -1,6 +1,100 @@
 $(document).ready(function() {
     listarPostagens();
+    carregarPerfilUsuario();
+    adicionarBotao();
+    redesSociais();
 });
+
+function carregarPerfilUsuario() {
+    var token = localStorage.getItem('token');
+    const urlParams = window.location.search;
+    const url = new URLSearchParams(urlParams);
+    const id = url.get('id');
+
+    if (id !== null) {
+        $.ajax({
+            url: 'http://localhost:8080/usuarios/' + id,
+            type: 'GET',
+            dataType: "json",
+            headers: { 'Authorization': 'Bearer ' + token },
+            success: function(usuario) {
+                $('#perfil-usuario').html(
+                    `<div class="card-body-profile row">
+                        <div class="col-8">
+                            <h4>`+ usuario.nome +`</h4>
+    
+                            <h5>`+ usuario.profissao +`</h5>
+    
+                            <p>`+ usuario.estado +`, `+ usuario.pais +`</p>
+                             
+                            <div id="botao-perfil"></div>
+                        </div>
+                        <div class="col-4" id="redes-sociais"></div>
+                    </div>`
+                );
+                
+                adicionarBotao(usuario);
+                redesSociais(usuario);
+            },
+            error: function(status, response, error) {
+                console.error("Erro ao obter dados do usuário: " + error);
+            }
+        });
+    }
+}
+
+function adicionarBotao(usuario) {
+    let usuarioLogado = usuario?.usuario_logado;
+    let relacionamento = usuario?.status_relacionamento;
+
+    var botao = '';
+
+    if (usuarioLogado == true) {
+        botao = `<button class="card-body-user-edit-btn" type="button"><a href="/perfil/editar.html">Editar Perfil</a></button>`;
+    } else {
+        if (relacionamento == 'PENDENTE') {
+            botao = `<button class="card-body-user-edit-btn" type="button"><a href="/perfil/editar.html">Solicitação enviada</a></button>`;
+        }
+
+        if (relacionamento == null) {
+            botao = `<button class="card-body-user-edit-btn" type="button"><a href="/perfil/editar.html">Adicionar</a></button>`;
+        }
+    }
+
+    $('#botao-perfil').html(botao);
+} 
+
+function redesSociais(usuario) {
+    let redesUsuario = usuario?.redes_sociais;
+
+    if (redesUsuario != null && redesUsuario.length > 0) {
+        redesUsuario.forEach(rede => {
+            let imagem = '';
+   
+            switch(rede.nome.toLowerCase()) {
+                case 'github':
+                    imagem = 'github.png';
+                    break;
+                case 'linkedin':
+                    imagem = 'linkedin.png';
+                    break;
+                case 'youtube':
+                    imagem = 'youtube.png';
+                    break;
+                default:
+                    imagem = 'default.png'; 
+            }
+
+            $('#redes-sociais').append(
+                `<div class="card-body-profile-social-media">
+                    <a href="` + rede.link + `" target="_blank">
+                        <img src="/assets/icons/` + imagem + `">
+                    </a>
+                </div>`
+            );
+        });
+    }
+}
 
 function listarPostagens() {
     var token = localStorage.getItem('token');
@@ -10,15 +104,15 @@ function listarPostagens() {
         type: 'GET',
         dataType: "json",
         headers: { 'Authorization': 'Bearer ' + token },
-        success: function(data) {
-            data.forEach(function(post) {
+        success: function (data) {
+            data.forEach(function (post) {
                 $('#lista-postagem').prepend(
                     `<div class="card-post card">
                         <div class="card-header">
                             <div class="row">
                                 <div class="card-post-avatar col-2">
                                     <a href="/perfil/perfil.html">
-                                        <img src="/assets/img/usuarios/ana.jpg" alt="Foto de Caique">
+                                        <img src="/assets/img/usuarios/ana.jpg" alt="Foto de Ana">
                                     </a>
                                 </div>
                                 
@@ -40,7 +134,7 @@ function listarPostagens() {
 
                         <div class="card-body">
                             <p class="card-post-text">
-                                `+ post.descricao +`
+                                `+ post.descricao + `
                             </p>
                         </div>
 
@@ -85,7 +179,7 @@ function listarPostagens() {
             });
         },
         error: function (status, response, error) {
-                console.error("Erro ao listar postagens" + error);
+            console.error("Erro ao listar postagens" + error);
         }
     });
 }
