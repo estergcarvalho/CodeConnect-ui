@@ -45,25 +45,29 @@ function carregarPerfilUsuario() {
 }
 
 function adicionarBotao(usuario) {
+    const urlParams = window.location.search;
+    const url = new URLSearchParams(urlParams);
+    const id = url.get('id');
+    
     let usuarioLogado = usuario?.usuario_logado;
     let relacionamento = usuario?.status_relacionamento;
-
+    
     var botao = '';
 
     if (usuarioLogado == true) {
-        botao = `<button class="card-body-user-edit-btn" type="button"><a href="/perfil/editar.html">Editar Perfil</a></button>`;
+        botao = `<button class="card-body-user-edit-btn" type="button"><a href="/perfil/editar.html?id=` + id + `">Editar Perfil</a></button>`;
     } else {
         if (relacionamento == 'PENDENTE') {
-            botao = `<button class="card-body-user-edit-btn" type="button"><a href="/perfil/editar.html">Solicitação enviada</a></button>`;
+            botao = `<button class="card-body-user-edit-btn" type="button"><a href="/perfil/editar.html?id=` + id + `">Solicitação enviada</a></button>`;
         }
 
         if (relacionamento == null) {
-            botao = `<button class="card-body-user-edit-btn" type="button"><a href="/perfil/editar.html">Adicionar</a></button>`;
+            botao = `<button class="card-body-user-edit-btn" type="button"><a href="/perfil/editar.html?id=` + id + `">Adicionar</a></button>`;
         }
-    }
+    } 
 
     $('#botao-perfil').html(botao);
-} 
+}
 
 function redesSociais(usuario) {
     let redesUsuario = usuario?.redes_sociais;
