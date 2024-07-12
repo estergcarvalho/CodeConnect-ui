@@ -99,9 +99,13 @@ function redesSociais(usuario) {
 
 function listarPostagens() {
     var token = localStorage.getItem('token');
+    const urlParams = window.location.search;
+    const url = new URLSearchParams(urlParams);
+    const id = url.get('id');
 
+    if (id !== null) {
     $.ajax({
-        url: "http://localhost:8080/posts",
+        url: 'http://localhost:8080/posts/' + id,
         type: 'GET',
         dataType: "json",
         headers: { 'Authorization': 'Bearer ' + token },
@@ -159,6 +163,7 @@ function listarPostagens() {
             console.error("Erro ao listar postagens" + error);
         }
     });
+    }
 }
 
 function carregarImagem() {
