@@ -28,21 +28,18 @@ function carregarDadosUsuario() {
 
                 let redesUsuario = response.redes_sociais;
                 
-                if (redesUsuario !== null && redesUsuario.length > 0 ) {
-                    redesUsuario.forEach(rede =>{
+                if (redesUsuario !== null && redesUsuario.length > 0) {
+                    redesUsuario.forEach(rede => {
                         let link = '';
 
                         switch(rede.nome.toLowerCase()) {
                             case 'github':
-                                link = 'https://github.com';
                                 $('#social-media-github').val(rede.link);
                                 break;
                             case 'linkedin':
-                                link = 'https://linkedin.com';
                                 $('#social-media-linkedin').val(rede.link);
                                 break;
                             case 'youtube':
-                                link = 'https://youtube.com';
                                 $('#social-media-youtube').val(rede.link);
                                 break;
                             default:
@@ -81,18 +78,18 @@ function atualizarDados() {
         ]
     };
 
-        $.ajax({
-            url: 'http://localhost:8080/usuarios',
-            type: 'PUT',
-            dataType: "json",
-            headers: { 'Authorization': 'Bearer ' + token },
-            contentType: 'application/json',
-            data: JSON.stringify(dadosAtualizados),
-            success: function() {
-                alert("Cadastro editado com sucesso");
-            },
-            error: function(status, response, error) {
-                console.error("Erro ao atualizar dados do usuário:", error);
-            }
-        });
+    $.ajax({
+        url: 'http://localhost:8080/usuarios',
+        type: 'PUT',
+        dataType: "json",
+        headers: { 'Authorization': 'Bearer ' + token },
+        contentType: 'application/json',
+        data: JSON.stringify(dadosAtualizados),
+        success: function() {
+            alert("Cadastro editado com sucesso");
+        },
+        error: function(status, response, error) {
+            console.error("Erro ao atualizar dados do usuário:", error);
+        }
+    });
 }   
