@@ -1,6 +1,7 @@
 $(document).ready(function() {
     $('#form-edit-profile-user').submit(function(event) {
         event.preventDefault();
+
         atualizarDados();
     });
 
@@ -13,7 +14,7 @@ function carregarDadosUsuario() {
     const url = new URLSearchParams(urlParams);
     const id = url.get('id');
 
-    if (id !== null) {
+    if (id != null) {
         $.ajax({
             url: 'http://localhost:8080/usuarios/' + id,
             type: 'GET',
@@ -28,10 +29,8 @@ function carregarDadosUsuario() {
 
                 let redesUsuario = response.redes_sociais;
                 
-                if (redesUsuario !== null && redesUsuario.length > 0) {
+                if (redesUsuario != null) {
                     redesUsuario.forEach(rede => {
-                        let link = '';
-
                         switch(rede.nome.toLowerCase()) {
                             case 'github':
                                 $('#social-media-github').val(rede.link);
@@ -43,11 +42,11 @@ function carregarDadosUsuario() {
                                 $('#social-media-youtube').val(rede.link);
                                 break;
                             default:
-                                link = 'null';
-                            }
-                        });
-                    }
-                },
+                                '';
+                        }
+                    });
+                }
+            },
             error: function(status, response, error) {
                 console.error("Erro ao obter dados do usuário: " + error);
             }
