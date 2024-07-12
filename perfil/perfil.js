@@ -109,30 +109,6 @@ function listarPostagens() {
             data.forEach(function (post) {
                 $('#lista-postagem').prepend(
                     `<div class="card-post card">
-                        <div class="card-header">
-                            <div class="row">
-                                <div class="card-post-avatar col-2">
-                                    <a href="/perfil/perfil.html">
-                                        <img src="/assets/img/usuarios/ana.jpg" alt="Foto de Ana">
-                                    </a>
-                                </div>
-                                
-                                <div class="col-10 position-relative">
-                                    <div class="card-post-user-name position-absolute top-50 translate-middle">
-                                        <div>
-                                            <a href="/perfil/perfil.html">Ana Carvalho</a>
-                                        </div>  
-                                        <div class="card-post-profession">
-                                                Engenheira Software
-                                        </div>  
-                                        <div class="card-post-date">
-                                                10 horas
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                         <div class="card-body">
                             <p class="card-post-text">
                                 `+ post.descricao + `
