@@ -100,9 +100,18 @@ function publicarFeed() {
                 publicacao.val('');
                 desabilitarPublicacao.attr('disabled', false)
             },
-            error: function(status, response, error) {
-                console.error("Erro realizar a postagem" + error);
-              
+            error: function(response) {
+                let statusError = response.responseJSON;
+                let error = response.status;
+    
+                if (statusError === 401 || error === 401) {
+                    localStorage.removeItem("token");
+                    window.location.href = "/login/login.html";
+                }
+    
+                console.error("Erro ao obter dados do usuário: " + statusError);
+    
+                console.error("Erro ao obter dados do usuário: " + error);
             }
         });
     });
@@ -215,8 +224,18 @@ function listarPostagens() {
                 );
             });
         },
-        error: function(status, response, error) {
-            console.error("Erro ao listar postagens" + error);
+        error: function(response) {
+            let statusError = response.responseJSON;
+            let error = response.status;
+
+            if (statusError === 401 || error === 401) {
+                localStorage.removeItem("token");
+                window.location.href = "/login/login.html";
+            }
+
+            console.error("Erro ao obter dados do usuário: " + statusError);
+
+            console.error("Erro ao obter dados do usuário: " + error);
         }
     });                  
 }

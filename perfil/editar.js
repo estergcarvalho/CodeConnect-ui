@@ -47,7 +47,17 @@ function carregarDadosUsuario() {
                     });
                 }
             },
-            error: function(status, response, error) {
+            error: function(response) {
+                let statusError = response.responseJSON;
+                let error = response.status;
+    
+                if (statusError === 401 || error === 401) {
+                    localStorage.removeItem("token");
+                    window.location.href = "/login/login.html";
+                }
+    
+                console.error("Erro ao obter dados do usuário: " + statusError);
+    
                 console.error("Erro ao obter dados do usuário: " + error);
             }
         });
