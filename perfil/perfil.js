@@ -19,7 +19,7 @@ function carregarPerfilUsuario() {
             dataType: "json",
             headers: { 'Authorization': 'Bearer ' + token },
             success: function(usuario) {
-                let profissao = usuario.profissao != null ? usuario.profissao : "";
+                let profissao = usuario.profissao != null && usuario.profissao !== "" ? usuario.profissao : "";
                 let localizacao = 
                 (usuario.estado != null && usuario.estado !== "")
                 ? (usuario.pais != null  && usuario.pais !== "" ? usuario.estado + `, ` + usuario.pais : usuario.estado)
