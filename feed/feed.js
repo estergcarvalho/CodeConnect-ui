@@ -143,6 +143,8 @@ function listarPostagens() {
         headers: {'Authorization': 'Bearer ' + token},
         success: function(data) {
             data.forEach(function(post) {
+                let profissao = post.profissao != null ? post.profissao : "";
+
                 $('#lista-postagem').append(
                     `<div class="card-post card">
                         <div class="card-header">
@@ -159,7 +161,7 @@ function listarPostagens() {
                                             <a href="/perfil/perfil.html?id=` + post.usuario.id + `">`+ post.usuario.nome +`</a>
                                         </div>  
                                         <div class="card-post-profession">
-                                            `+ post.usuario.profissao +`
+                                            `+ profissao +`
                                         </div>  
                                         <div class="card-post-date">
                                             1 hora
