@@ -20,7 +20,7 @@ function carregarPerfilUsuario() {
             headers: { 'Authorization': 'Bearer ' + token },
             success: function(usuario) {
                 let profissao = usuario.profissao != null ? usuario.profissao : "";
-                let localizacao = (usuario.estado != null )
+                let localizacao = (usuario.estado != null)
                 ? (usuario.pais != null ? usuario.estado + `, ` + usuario.pais : usuario.estado)
                 : (usuario.pais != null ? usuario.pais : "");
 
