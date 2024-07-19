@@ -19,14 +19,19 @@ function carregarPerfilUsuario() {
             dataType: "json",
             headers: { 'Authorization': 'Bearer ' + token },
             success: function(usuario) {
+                let profissao = usuario.profissao != null ? usuario.profissao : "";
+                let localizacao = (usuario.estado != null)
+                ? (usuario.pais != null ? usuario.estado + `, ` + usuario.pais : usuario.estado)
+                : (usuario.pais != null ? usuario.pais : "");
+
                 $('#perfil-usuario').html(
                     `<div class="card-body-profile row">
                         <div class="col-8">
                             <h4>`+ usuario.nome +`</h4>
     
-                            <h5>`+ usuario.profissao +`</h5>
+                            <h5>`+ profissao +`</h5>
     
-                            <p>`+ usuario.estado +`, `+ usuario.pais +`</p>
+                            <p>`+ localizacao +`</p>
                              
                             <div id="botao-perfil"></div>
                         </div>
