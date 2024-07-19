@@ -47,8 +47,8 @@ function carregarDadosUsuario() {
                     });
                 }
             },
-            error: function(status, response, error) {
-                console.error("Erro ao obter dados do usuário: " + error);
+            error: function(response) {
+                tokenExpirado(response);
             }
         });
     } 

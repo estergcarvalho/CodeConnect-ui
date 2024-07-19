@@ -100,9 +100,8 @@ function publicarFeed() {
                 publicacao.val('');
                 desabilitarPublicacao.attr('disabled', false)
             },
-            error: function(status, response, error) {
-                console.error("Erro realizar a postagem" + error);
-              
+            error: function(response) {
+                tokenExpirado(response);
             }
         });
     });
@@ -215,8 +214,8 @@ function listarPostagens() {
                 );
             });
         },
-        error: function(status, response, error) {
-            console.error("Erro ao listar postagens" + error);
+        error: function(response) {
+            tokenExpirado(response);
         }
     });                  
 }

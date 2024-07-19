@@ -46,8 +46,8 @@ function listarAmigos() {
             var listarAmigos = $(".card-post-list-friends-loading");
             listarAmigos.LoadingOverlay("hide");
         },
-        error: function(status, response, error) {
-            console.error("Erro ao listar amigos" + error);
+        error: function(response) {
+            tokenExpirado(response);
         }
     });
 }

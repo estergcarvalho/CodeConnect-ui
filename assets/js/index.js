@@ -26,3 +26,14 @@ function logout() {
 
     window.location.href = "/login/login.html";
 }
+
+function tokenExpirado(response) {
+    let statusError = response.responseJSON;
+    let error = response.status;
+
+    if (statusError == 401 || error == 401) {
+        localStorage.removeItem("token");
+        
+        window.location.href = "/login/login.html";
+    }
+}

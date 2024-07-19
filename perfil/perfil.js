@@ -37,8 +37,8 @@ function carregarPerfilUsuario() {
                 adicionarBotao(usuario);
                 redesSociais(usuario);
             },
-            error: function(status, response, error) {
-                console.error("Erro ao obter dados do usuário: " + error);
+            error: function(response) {
+                tokenExpirado(response);
             }
         });
     }
@@ -160,13 +160,13 @@ function listarPostagens() {
                             </div>
                             </div>
                     </div>`
-                );
-            });
-        },
-        error: function (status, response, error) {
-            console.error("Erro ao listar postagens" + error);
-        }
-    });
+                    );
+                });
+            },
+            error: function(response) {
+                tokenExpirado(response);
+            }
+        });
     }
 }
 
