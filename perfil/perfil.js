@@ -19,11 +19,10 @@ function carregarPerfilUsuario() {
             dataType: "json",
             headers: { 'Authorization': 'Bearer ' + token },
             success: function(usuario) {
-                let profissao = usuario.profissao != null && usuario.profissao !== "" ? usuario.profissao : "";
-                let localizacao = 
-                (usuario.estado != null && usuario.estado !== "")
-                ? (usuario.pais != null  && usuario.pais !== "" ? usuario.estado + `, ` + usuario.pais : usuario.estado)
-                : (usuario.pais != null  && usuario.pais !== ""  ? usuario.pais : "");
+                let profissao = usuario.profissao != null ? usuario.profissao : "";
+                let localizacao = (usuario.estado != null )
+                ? (usuario.pais != null ? usuario.estado + `, ` + usuario.pais : usuario.estado)
+                : (usuario.pais != null ? usuario.pais : "");
 
                 $('#perfil-usuario').html(
                     `<div class="card-body-profile row">
@@ -32,7 +31,7 @@ function carregarPerfilUsuario() {
     
                             <h5>`+ profissao +`</h5>
     
-                            <p>`+ localizacao+`</p>
+                            <p>`+ localizacao +`</p>
                              
                             <div id="botao-perfil"></div>
                         </div>

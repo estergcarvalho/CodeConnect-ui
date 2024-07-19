@@ -143,7 +143,7 @@ function listarPostagens() {
         headers: {'Authorization': 'Bearer ' + token},
         success: function(data) {
             data.forEach(function(post) {
-                let profissao = post.profissao != null && post.profissao !== "" ? post.profissao : "";
+                let profissao = post.profissao != null ? post.profissao : "";
 
                 $('#lista-postagem').append(
                     `<div class="card-post card">
