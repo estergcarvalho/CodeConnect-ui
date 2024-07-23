@@ -3,7 +3,7 @@ $(document).ready(function() {
     adicionarBotao();
     redesSociais();
     listarPostagens();
-    carregarImagem();
+    adicionarImagem();
 });
 
 function carregarPerfilUsuario() {
@@ -38,6 +38,10 @@ function carregarPerfilUsuario() {
                         <div class="col-4" id="redes-sociais"></div>
                     </div>`
                 );
+
+                var imagem =  usuario.imagem ? 'data:image/png;base64, ' + usuario.imagem : '/assets/img/usuarios/ana.jpg';
+
+                $('#profile-image').attr('src', imagem);
                 
                 adicionarBotao(usuario);
                 redesSociais(usuario);
@@ -175,8 +179,35 @@ function listarPostagens() {
     }
 }
 
-function carregarImagem() {
+function adicionarImagem() {
+    var token = localStorage.getItem('token');
+
     $('.card-profile-update-icon-text').click(function() {
         $('#input-update-img').click();
     });  
+
+    $('#input-update-img').change(function() {
+        var arquivo = this.files[0];
+
+        if (arquivo) {
+            var formData = new FormData();
+            formData.append('imagem', arquivo);
+        
+            $.ajax({
+                url:'http://localhost:8080/usuarios/adicionarImagem',
+                type: 'POST',
+                enctype: 'multipart/form-data',
+                contentType: false,
+                processData: false,
+                data: formData,
+                headers: { 'Authorization': 'Bearer ' + token },
+                success: function(response) {
+                    $('#profile-image').attr('src', 'data:image/png;base64, '  + response.imagem);
+                },
+                error: function(error) {
+                    alert('Erro ao carregar a imagem', error);
+                }
+            });
+        }
+    }) 
 }
