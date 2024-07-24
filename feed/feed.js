@@ -142,7 +142,7 @@ function listarPostagens() {
         headers: {'Authorization': 'Bearer ' + token},
         success: function(data) {
             data.forEach(function(post) {
-                var imagem = post.usuario.imagem ? 'data:image/png;base64, ' + post.usuario.imagem : '/assets/img/usuarios/ana.jpg';
+                var imagem = post.usuario.imagem ? 'data:image/png;base64, ' + post.usuario.imagem : '/assets/img/usuarios/foto.jpg';
 
                 $('#lista-postagem').append(
                     `<div class="card-post card">

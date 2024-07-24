@@ -39,7 +39,7 @@ function carregarPerfilUsuario() {
                     </div>`
                 );
 
-                var imagem =  usuario.imagem ? 'data:image/png;base64, ' + usuario.imagem : '/assets/img/usuarios/ana.jpg';
+                var imagem =  usuario.imagem ? 'data:image/png;base64, ' + usuario.imagem : 'assets/img/usuarios/foto.jpg';
 
                 $('#profile-image').attr('src', imagem);
                 
