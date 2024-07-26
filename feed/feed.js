@@ -33,23 +33,23 @@ function publicarFeed() {
             headers: {'Authorization': 'Bearer ' + token},
             data: JSON.stringify({ descricao: publicacaoTexto }),
             success: function(response) {
+                var imagem = response.imagem ? 'data:image/png;base64, ' + response.imagem : '/assets/img/usuarios/ana.jpg';
+
                 $(".card-post-container").prepend(
                     `<div class="card-post card">
                         <div class="card-header">
                             <div class="row">
                                 <div class="card-post-avatar col-2">
                                     <a href="/perfil/perfil.html">
-                                        <img src="/assets/img/usuarios/caique.jpg" alt="Foto de Caique">
+                                        <img src="`+ imagem +`" alt="Foto de usuario">
                                     </a>
                                 </div>
                                 <div class="col-10 position-relative">
                                     <div class="card-post-user-name position-absolute top-50 translate-middle">
                                         <div>
-                                            <a href="/perfil/perfil.html">Teste2</a>
+                                            <a href="/perfil/perfil.html">`+ response.nome +`</a>
                                         </div>  
-                                        <div class="card-post-profession">
-                                                Engenheiro Software
-                                        </div>  
+                                        <div class="card-post-profession">`+ response.profissao +`</div>  
                                         <div class="card-post-date">
                                                 1 hora
                                         </div>
@@ -142,7 +142,7 @@ function listarPostagens() {
         headers: {'Authorization': 'Bearer ' + token},
         success: function(data) {
             data.forEach(function(post) {
-                let profissao = post.profissao != null ? post.profissao : "";
+                var imagem = post.usuario.imagem ? 'data:image/png;base64, ' + post.usuario.imagem : '/assets/img/usuarios/foto.jpg';
 
                 $('#lista-postagem').append(
                     `<div class="card-post card">
@@ -150,7 +150,7 @@ function listarPostagens() {
                             <div class="row">
                                 <div class="card-post-avatar col-2">
                                     <a href="/perfil/perfil.html?id=` + post.usuario.id + `">
-                                        <img src="/assets/img/usuarios/ana.jpg" alt="Foto de Ana">
+                                        <img src=" `+ imagem +`" id="profile-image-user"  alt="Foto de Ana">
                                     </a>
                                 </div>
                                 
@@ -160,7 +160,7 @@ function listarPostagens() {
                                             <a href="/perfil/perfil.html?id=` + post.usuario.id + `">`+ post.usuario.nome +`</a>
                                         </div>  
                                         <div class="card-post-profession">
-                                            `+ profissao +`
+                                            `+ post.usuario.profissao +`
                                         </div>  
                                         <div class="card-post-date">
                                             1 hora
