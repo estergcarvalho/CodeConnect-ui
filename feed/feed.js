@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    dadosPerfil();
     reacaoCurtir();
     reacaoComentario();
     comentar();
@@ -11,6 +12,26 @@ $(document).ready(function() {
     habilitarPublicacao();
     listarPostagens();
 });
+
+function dadosPerfil() {
+    var token = localStorage.getItem('token');
+    
+    $.ajax({
+        url: 'http://localhost:8080/usuarios/perfil',
+        type: 'GET',
+        contentType: 'application/json',
+        headers: {'Authorization': 'Bearer ' + token},
+        success : function(perfil) {
+        var imagem = carregarImagem(perfil);
+
+        $("#profile-user-data").attr('src', imagem).attr('alt', 'Foto de'+ perfil.nome);
+        $("#profile-user-link").attr('href','/perfil/perfil.html?id=' + perfil.id)
+    },
+        error: function(response) {
+            tokenExpirado(response);
+        }
+    });
+}
 
 function publicarFeed() {
     $("#btn-publicar").click(function() {
@@ -89,7 +110,7 @@ function publicarFeed() {
                             <hr class="card-line card-line-reactions">
 
                             <div class="card-comment">
-                                <img class="card-comment-avatar" src="`+ imagem+`" alt="Foto de `+ response.nome +`">
+                                <img class="card-comment-avatar" src="`+ imagem +`" alt="Foto de `+ response.nome +`">
 
                                 <div class="card-comment-text mb-3">
                                     <textarea class="card-comment-text-area" id="card-comment-text-1" placeholder="Escreva um comentário..."></textarea>
