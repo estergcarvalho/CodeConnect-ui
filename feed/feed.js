@@ -51,10 +51,10 @@ function publicarFeed() {
                                             <a href="/perfil/perfil.html?id=` + response.id + `">`+response.nome+`</a>
                                         </div>  
                                         <div class="card-post-profession">
-                                                `+ response.profissao +`
+                                            `+ response.profissao +`
                                         </div>  
                                         <div class="card-post-date">
-                                                1 hora
+                                            1 hora
                                         </div>
                                     </div>
                                 </div>
@@ -149,8 +149,6 @@ function listarPostagens() {
         success: function(data) {
             data.forEach(function(post) {
                 var imagem = carregarImagem(post.usuario);
-
-                console.log("imagem: ", imagem);
 
                 $('#lista-postagem').append(
                     `<div class="card-post card">
