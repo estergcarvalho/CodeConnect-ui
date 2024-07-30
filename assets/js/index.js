@@ -37,3 +37,7 @@ function tokenExpirado(response) {
         window.location.href = "/login/login.html";
     }
 }
+
+function carregarImagem(usuario) {
+    return usuario.imagem ?  `data:`+ usuario.tipo_imagem  +`;base64, ` + usuario.imagem : `/assets/img/usuarios/foto.jpg`;
+}

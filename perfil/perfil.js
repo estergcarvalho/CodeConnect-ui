@@ -19,6 +19,8 @@ function carregarPerfilUsuario() {
             dataType: "json",
             headers: { 'Authorization': 'Bearer ' + token },
             success: function(usuario) {
+                var imagem = carregarImagem(usuario);
+
                 let profissao = usuario.profissao != null ? usuario.profissao : "";
                 let localizacao = (usuario.estado != null)
                 ? (usuario.pais != null ? usuario.estado + `, ` + usuario.pais : usuario.estado)
@@ -38,8 +40,6 @@ function carregarPerfilUsuario() {
                         <div class="col-4" id="redes-sociais"></div>
                     </div>`
                 );
-
-                var imagem =  usuario.imagem ? 'data:image/png;base64, ' + usuario.imagem : 'assets/img/usuarios/foto.jpg';
 
                 $('#profile-image').attr('src', imagem);
                 
@@ -124,6 +124,8 @@ function listarPostagens() {
         headers: { 'Authorization': 'Bearer ' + token },
         success: function (data) {
             data.forEach(function (post) {
+                var imagem = carregarImagem(post);
+            
                 $('#lista-postagem').prepend(
                     `<div class="card-post card">
                         <div class="card-body">
@@ -159,7 +161,7 @@ function listarPostagens() {
                                 <hr class="card-line card-line-reactions">
 
                             <div class="card-comment">
-                                <img class="card-comment-avatar" src="/assets/img/usuarios/ana.jpg" alt="Foto de ana">
+                                <img class="card-comment-avatar" src="`+ imagem +`" alt="Foto de `+ post.nome +`">
 
                                 <div class="card-comment-text mb-3">
                                     <textarea class="card-comment-text-area" id="card-comment-text-2" placeholder="Escreva um comentário..."></textarea>
