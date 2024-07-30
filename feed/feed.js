@@ -211,9 +211,7 @@ function listarPostagens() {
                             <hr class="card-line card-line-reactions">
 
                             <div class="card-comment">
-                                <a href="/perfil/perfil.html?id=` + post.usuario.id + `">
-                                    <img class="card-comment-avatar" src=" `+ imagem +`" alt="Foto de `+ post.usuario.nome +`">
-                                </a>
+                                   <img class="card-comment-avatar" src=" `+ imagem +`" alt="Foto de `+ post.usuario.nome +`">
                                 <div class="card-comment-text mb-3">
                                     <textarea class="card-comment-text-area" id="card-comment-text-2" placeholder="Escreva um comentário..."></textarea>
                                     <label class="form-label d-none" for="card-comment-text-1"></label>
