@@ -56,8 +56,8 @@ function carregarDadosPerfil() {
             var imagem = carregarImagem(perfil);
 
             $('#profile-user-image').attr('src', imagem).attr('alt', 'Foto de' + perfil.nome);
-            $('#item-perfil-user').attr('href','/perfil/perfil.html?id=' + perfil.id);
-            $('#item-perfil-edit').attr('href','/perfil/editar.html?id=' + perfil.id);
+            $('#item-profile-user').attr('href','/perfil/perfil.html?id=' + perfil.id);
+            $('#item-profile-edit').attr('href','/perfil/editar.html?id=' + perfil.id);
         },
         error: function(response) {
             tokenExpirado(response);
