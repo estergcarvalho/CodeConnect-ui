@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    dadosPerfil();
     reacaoCurtir();
     reacaoComentario();
     comentar();
@@ -11,6 +12,26 @@ $(document).ready(function() {
     habilitarPublicacao();
     listarPostagens();
 });
+
+function dadosPerfil() {
+    var token = localStorage.getItem('token');
+    
+    $.ajax({
+        url: 'http://localhost:8080/usuarios/perfil',
+        type: 'GET',
+        contentType: 'application/json',
+        headers: {'Authorization': 'Bearer ' + token},
+        success : function(perfil) {
+            var imagem = carregarImagem(perfil);
+
+            $("#profile-user-data").attr('src', imagem).attr('alt', 'Foto de' + perfil.nome);
+            $("#profile-user-link").attr('href','/perfil/perfil.html?id=' + perfil.id);
+        },
+        error: function(response) {
+            tokenExpirado(response);
+        }
+    });
+}
 
 function publicarFeed() {
     $("#btn-publicar").click(function() {
@@ -33,25 +54,28 @@ function publicarFeed() {
             headers: {'Authorization': 'Bearer ' + token},
             data: JSON.stringify({ descricao: publicacaoTexto }),
             success: function(response) {
-                var imagem = response.imagem ? 'data:image/png;base64, ' + response.imagem : '/assets/img/usuarios/ana.jpg';
+                var imagem =  carregarImagem(response);
 
                 $(".card-post-container").prepend(
                     `<div class="card-post card">
                         <div class="card-header">
-                            <div class="row">
+                             <div class="row">
                                 <div class="card-post-avatar col-2">
-                                    <a href="/perfil/perfil.html">
-                                        <img src="`+ imagem +`" alt="Foto de usuario">
+                                        <a href="/perfil/perfil.html?id=` + response.id + `">
+                                        <img src="`+ imagem +`" alt="Foto de `+ response.nome +`">
                                     </a>
                                 </div>
-                                <div class="col-10 position-relative">
-                                    <div class="card-post-user-name position-absolute top-50 translate-middle">
+                                    
+                                <div class="col-10 card-post-user">
+                                    <div class="card-post-user-name">
                                         <div>
-                                            <a href="/perfil/perfil.html">`+ response.nome +`</a>
+                                            <a href="/perfil/perfil.html?id=` + response.id + `">`+ response.nome +`</a>
                                         </div>  
-                                        <div class="card-post-profession">`+ response.profissao +`</div>  
+                                        <div class="card-post-profession">
+                                            `+ response.profissao +`
+                                        </div>  
                                         <div class="card-post-date">
-                                                1 hora
+                                            1 hora
                                         </div>
                                     </div>
                                 </div>
@@ -82,14 +106,17 @@ function publicarFeed() {
                                     <span>Compartilhar</span>
                                 </a>
                             </div>
+
                             <hr class="card-line card-line-reactions">
+
                             <div class="card-comment">
-                                <img class="card-comment-avatar" src="/assets/img/usuarios/ana.jpg" alt="Foto de ana">
+                                <img class="card-comment-avatar" src="`+ imagem +`" alt="Foto de `+ response.nome +`">
+
                                 <div class="card-comment-text mb-3">
                                     <textarea class="card-comment-text-area" id="card-comment-text-1" placeholder="Escreva um comentário..."></textarea>
                                     <label class="form-label d-none" for="card-comment-text-1"></label>
                                     <button class="card-comment-btn" id="btnComentar" type="button">Comentar</button>
-                                </div>
+                                </div>     
                             </div>
                         </div>
                     </div>`
@@ -98,7 +125,7 @@ function publicarFeed() {
                 cardPublicarFeed.LoadingOverlay("hide");
                 cardPublicarFeed.fadeOut();
                 publicacao.val('');
-                desabilitarPublicacao.attr('disabled', false)
+                desabilitarPublicacao.attr('disabled', false);
             },
             error: function(response) {
                 tokenExpirado(response);
@@ -142,7 +169,7 @@ function listarPostagens() {
         headers: {'Authorization': 'Bearer ' + token},
         success: function(data) {
             data.forEach(function(post) {
-                var imagem = post.usuario.imagem ? 'data:image/png;base64, ' + post.usuario.imagem : '/assets/img/usuarios/foto.jpg';
+                var imagem = carregarImagem(post.usuario);
 
                 $('#lista-postagem').append(
                     `<div class="card-post card">
@@ -150,7 +177,7 @@ function listarPostagens() {
                             <div class="row">
                                 <div class="card-post-avatar col-2">
                                     <a href="/perfil/perfil.html?id=` + post.usuario.id + `">
-                                        <img src=" `+ imagem +`" id="profile-image-user"  alt="Foto de Ana">
+                                        <img src=" `+ imagem +`" id="profile-image-user" alt="Foto de `+ post.usuario.nome +`">
                                     </a>
                                 </div>
                                 
@@ -203,8 +230,7 @@ function listarPostagens() {
                             <hr class="card-line card-line-reactions">
 
                             <div class="card-comment">
-                                <img class="card-comment-avatar" src="/assets/img/usuarios/ana.jpg" alt="Foto de ana">
-
+                                   <img class="card-comment-avatar" src=" `+ imagem +`" alt="Foto de `+ post.usuario.nome +`">
                                 <div class="card-comment-text mb-3">
                                     <textarea class="card-comment-text-area" id="card-comment-text-2" placeholder="Escreva um comentário..."></textarea>
                                     <label class="form-label d-none" for="card-comment-text-1"></label>

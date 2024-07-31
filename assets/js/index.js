@@ -1,4 +1,6 @@
 $(document).ready(function() {
+    validarToken();
+
     $('#navbar-content').load("/topo/topo.html");
     $('#navbar-menu-scrollbar').load("/menu-lateral/menu-lateral.html");
     $('#footer-content').load("/rodape/rodape.html");
@@ -10,7 +12,7 @@ $(document).ready(function() {
         size: 13
     });
 
-    validarToken();
+    carregarDadosPerfil();   
 });
 
 function validarToken() {
@@ -36,4 +38,29 @@ function tokenExpirado(response) {
         
         window.location.href = "/login/login.html";
     }
+}
+
+function carregarImagem(usuario) {
+    return usuario.imagem ?  `data:`+ usuario.tipo_imagem  +`;base64, ` + usuario.imagem : `/assets/img/usuarios/foto.jpg`;
+}
+
+function carregarDadosPerfil() {
+    var token = localStorage.getItem('token');
+
+    $.ajax({
+        url: 'http://localhost:8080/usuarios/perfil',
+        type: 'GET',
+        contentType: 'application/json',
+        headers: {'Authorization': 'Bearer ' + token},
+        success: function(perfil) {
+            var imagem = carregarImagem(perfil);
+
+            $('#profile-user-image').attr('src', imagem).attr('alt', 'Foto de' + perfil.nome);
+            $('#item-profile-user').attr('href','/perfil/perfil.html?id=' + perfil.id);
+            $('#item-profile-edit').attr('href','/perfil/editar.html?id=' + perfil.id);
+        },
+        error: function(response) {
+            tokenExpirado(response);
+        }
+    });
 }

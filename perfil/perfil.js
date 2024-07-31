@@ -19,6 +19,8 @@ function carregarPerfilUsuario() {
             dataType: "json",
             headers: { 'Authorization': 'Bearer ' + token },
             success: function(usuario) {
+                var imagem = carregarImagem(usuario);
+
                 let profissao = usuario.profissao != null ? usuario.profissao : "";
                 let localizacao = (usuario.estado != null)
                 ? (usuario.pais != null ? usuario.estado + `, ` + usuario.pais : usuario.estado)
@@ -38,8 +40,6 @@ function carregarPerfilUsuario() {
                         <div class="col-4" id="redes-sociais"></div>
                     </div>`
                 );
-
-                var imagem =  usuario.imagem ? 'data:image/png;base64, ' + usuario.imagem : 'assets/img/usuarios/foto.jpg';
 
                 $('#profile-image').attr('src', imagem);
                 
@@ -117,58 +117,60 @@ function listarPostagens() {
     const id = url.get('id');
 
     if (id !== null) {
-    $.ajax({
-        url: 'http://localhost:8080/posts/' + id,
-        type: 'GET',
-        dataType: "json",
-        headers: { 'Authorization': 'Bearer ' + token },
-        success: function (data) {
-            data.forEach(function (post) {
-                $('#lista-postagem').prepend(
-                    `<div class="card-post card">
-                        <div class="card-body">
-                            <p class="card-post-text">
-                                `+ post.descricao + `
-                            </p>
-                        </div>
-
-                        <div class="card-footer pb-0">
-                            <div class="card-reactions-count">
-                                <a href="#" class="card-reactions-count-likes">0 curtidas</a>
-                                <a href="#">0 comentários</a>
-                            </div>
-                            <hr class="card-line card-line-count">
-
-                            <div class="card-reactions">
-                                <a class="card-reactions-like" href="#" id="0">
-                                    <i class="bi bi-heart" id="img-like-1"></i>
-                                    <span>Curtir</span>
-                                </a>
-
-                                <a class="card-reactions-comment" href="#" id="0">
-                                    <i class="bi bi-chat"></i>
-                                    <span>Comentar</span>
-                                </a>
-
-                                <a href="#">
-                                    <i class="bi bi-share"></i>
-                                    <span>Compartilhar</span>
-                                </a>
+        $.ajax({
+            url: 'http://localhost:8080/posts/' + id,
+            type: 'GET',
+            dataType: "json",
+            headers: { 'Authorization': 'Bearer ' + token },
+            success: function (data) {
+                data.forEach(function (post) {
+                    var imagem = carregarImagem(post);
+                
+                    $('#lista-postagem').prepend(
+                        `<div class="card-post card">
+                            <div class="card-body">
+                                <p class="card-post-text">
+                                    `+ post.descricao + `
+                                </p>
                             </div>
 
-                                <hr class="card-line card-line-reactions">
+                            <div class="card-footer pb-0">
+                                <div class="card-reactions-count">
+                                    <a href="#" class="card-reactions-count-likes">0 curtidas</a>
+                                    <a href="#">0 comentários</a>
+                                </div>
+                                <hr class="card-line card-line-count">
 
-                            <div class="card-comment">
-                                <img class="card-comment-avatar" src="/assets/img/usuarios/ana.jpg" alt="Foto de ana">
+                                <div class="card-reactions">
+                                    <a class="card-reactions-like" href="#" id="0">
+                                        <i class="bi bi-heart" id="img-like-1"></i>
+                                        <span>Curtir</span>
+                                    </a>
 
-                                <div class="card-comment-text mb-3">
-                                    <textarea class="card-comment-text-area" id="card-comment-text-2" placeholder="Escreva um comentário..."></textarea>
-                                        <label class="form-label d-none" for="card-comment-text-1"></label>
-                                    <button class="card-comment-btn" id="btnComentar" type="button">Comentar</button>
+                                    <a class="card-reactions-comment" href="#" id="0">
+                                        <i class="bi bi-chat"></i>
+                                        <span>Comentar</span>
+                                    </a>
+
+                                    <a href="#">
+                                        <i class="bi bi-share"></i>
+                                        <span>Compartilhar</span>
+                                    </a>
+                                </div>
+
+                                    <hr class="card-line card-line-reactions">
+
+                                <div class="card-comment">
+                                    <img class="card-comment-avatar" src="`+ imagem +`" alt="Foto de `+ post.nome +`">
+
+                                    <div class="card-comment-text mb-3">
+                                        <textarea class="card-comment-text-area" id="card-comment-text-2" placeholder="Escreva um comentário..."></textarea>
+                                            <label class="form-label d-none" for="card-comment-text-1"></label>
+                                        <button class="card-comment-btn" id="btnComentar" type="button">Comentar</button>
+                                    </div>
                                 </div>
                             </div>
-                            </div>
-                    </div>`
+                        </div>`
                     );
                 });
             },
@@ -202,7 +204,7 @@ function adicionarImagem() {
                 data: formData,
                 headers: { 'Authorization': 'Bearer ' + token },
                 success: function(response) {
-                    $('#profile-image').attr('src', 'data:image/png;base64, '  + response.imagem);
+                    $('#profile-image').attr('src', `data:`+ response.tipo_imagem +`;base64, `+ response.imagem);
                 },
                 error: function(error) {
                     alert('Erro ao carregar a imagem', error);
