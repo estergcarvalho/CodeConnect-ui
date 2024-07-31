@@ -24,8 +24,8 @@ function dadosPerfil() {
         success : function(perfil) {
         var imagem = carregarImagem(perfil);
 
-        $("#profile-user-data").attr('src', imagem).attr('alt', 'Foto de'+ perfil.nome);
-        $("#profile-user-link").attr('href','/perfil/perfil.html?id=' + perfil.id)
+        $("#profile-user-data").attr('src', imagem).attr('alt', 'Foto de' + perfil.nome);
+        $("#profile-user-link").attr('href','/perfil/perfil.html?id=' + perfil.id);
     },
         error: function(response) {
             tokenExpirado(response);
@@ -69,7 +69,7 @@ function publicarFeed() {
                                 <div class="col-10 card-post-user">
                                     <div class="card-post-user-name">
                                         <div>
-                                            <a href="/perfil/perfil.html?id=` + response.id + `">`+response.nome+`</a>
+                                            <a href="/perfil/perfil.html?id=` + response.id + `">`+ response.nome +`</a>
                                         </div>  
                                         <div class="card-post-profession">
                                             `+ response.profissao +`
@@ -125,7 +125,7 @@ function publicarFeed() {
                 cardPublicarFeed.LoadingOverlay("hide");
                 cardPublicarFeed.fadeOut();
                 publicacao.val('');
-                desabilitarPublicacao.attr('disabled', false)
+                desabilitarPublicacao.attr('disabled', false);
             },
             error: function(response) {
                 tokenExpirado(response);

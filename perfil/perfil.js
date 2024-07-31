@@ -204,7 +204,7 @@ function adicionarImagem() {
                 data: formData,
                 headers: { 'Authorization': 'Bearer ' + token },
                 success: function(response) {
-                    $('#profile-image').attr('src', 'data:image/png;base64, '  + response.imagem);
+                    $('#profile-image').attr('src', `data:`+ response.tipo_imagem +`;base64, `+ response.imagem);
                 },
                 error: function(error) {
                     alert('Erro ao carregar a imagem', error);
