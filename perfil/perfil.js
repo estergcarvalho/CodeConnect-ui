@@ -117,60 +117,60 @@ function listarPostagens() {
     const id = url.get('id');
 
     if (id !== null) {
-    $.ajax({
-        url: 'http://localhost:8080/posts/' + id,
-        type: 'GET',
-        dataType: "json",
-        headers: { 'Authorization': 'Bearer ' + token },
-        success: function (data) {
-            data.forEach(function (post) {
-                var imagem = carregarImagem(post);
-            
-                $('#lista-postagem').prepend(
-                    `<div class="card-post card">
-                        <div class="card-body">
-                            <p class="card-post-text">
-                                `+ post.descricao + `
-                            </p>
-                        </div>
-
-                        <div class="card-footer pb-0">
-                            <div class="card-reactions-count">
-                                <a href="#" class="card-reactions-count-likes">0 curtidas</a>
-                                <a href="#">0 comentários</a>
-                            </div>
-                            <hr class="card-line card-line-count">
-
-                            <div class="card-reactions">
-                                <a class="card-reactions-like" href="#" id="0">
-                                    <i class="bi bi-heart" id="img-like-1"></i>
-                                    <span>Curtir</span>
-                                </a>
-
-                                <a class="card-reactions-comment" href="#" id="0">
-                                    <i class="bi bi-chat"></i>
-                                    <span>Comentar</span>
-                                </a>
-
-                                <a href="#">
-                                    <i class="bi bi-share"></i>
-                                    <span>Compartilhar</span>
-                                </a>
+        $.ajax({
+            url: 'http://localhost:8080/posts/' + id,
+            type: 'GET',
+            dataType: "json",
+            headers: { 'Authorization': 'Bearer ' + token },
+            success: function (data) {
+                data.forEach(function (post) {
+                    var imagem = carregarImagem(post);
+                
+                    $('#lista-postagem').prepend(
+                        `<div class="card-post card">
+                            <div class="card-body">
+                                <p class="card-post-text">
+                                    `+ post.descricao + `
+                                </p>
                             </div>
 
-                                <hr class="card-line card-line-reactions">
+                            <div class="card-footer pb-0">
+                                <div class="card-reactions-count">
+                                    <a href="#" class="card-reactions-count-likes">0 curtidas</a>
+                                    <a href="#">0 comentários</a>
+                                </div>
+                                <hr class="card-line card-line-count">
 
-                            <div class="card-comment">
-                                <img class="card-comment-avatar" src="`+ imagem +`" alt="Foto de `+ post.nome +`">
+                                <div class="card-reactions">
+                                    <a class="card-reactions-like" href="#" id="0">
+                                        <i class="bi bi-heart" id="img-like-1"></i>
+                                        <span>Curtir</span>
+                                    </a>
 
-                                <div class="card-comment-text mb-3">
-                                    <textarea class="card-comment-text-area" id="card-comment-text-2" placeholder="Escreva um comentário..."></textarea>
-                                        <label class="form-label d-none" for="card-comment-text-1"></label>
-                                    <button class="card-comment-btn" id="btnComentar" type="button">Comentar</button>
+                                    <a class="card-reactions-comment" href="#" id="0">
+                                        <i class="bi bi-chat"></i>
+                                        <span>Comentar</span>
+                                    </a>
+
+                                    <a href="#">
+                                        <i class="bi bi-share"></i>
+                                        <span>Compartilhar</span>
+                                    </a>
+                                </div>
+
+                                    <hr class="card-line card-line-reactions">
+
+                                <div class="card-comment">
+                                    <img class="card-comment-avatar" src="`+ imagem +`" alt="Foto de `+ post.nome +`">
+
+                                    <div class="card-comment-text mb-3">
+                                        <textarea class="card-comment-text-area" id="card-comment-text-2" placeholder="Escreva um comentário..."></textarea>
+                                            <label class="form-label d-none" for="card-comment-text-1"></label>
+                                        <button class="card-comment-btn" id="btnComentar" type="button">Comentar</button>
+                                    </div>
                                 </div>
                             </div>
-                            </div>
-                    </div>`
+                        </div>`
                     );
                 });
             },

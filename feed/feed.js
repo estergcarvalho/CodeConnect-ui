@@ -26,7 +26,7 @@ function dadosPerfil() {
 
             $("#profile-user-data").attr('src', imagem).attr('alt', 'Foto de' + perfil.nome);
             $("#profile-user-link").attr('href','/perfil/perfil.html?id=' + perfil.id);
-    },
+        },
         error: function(response) {
             tokenExpirado(response);
         }
