@@ -22,10 +22,10 @@ function dadosPerfil() {
         contentType: 'application/json',
         headers: {'Authorization': 'Bearer ' + token},
         success : function(perfil) {
-        var imagem = carregarImagem(perfil);
+            var imagem = carregarImagem(perfil);
 
-        $("#profile-user-data").attr('src', imagem).attr('alt', 'Foto de' + perfil.nome);
-        $("#profile-user-link").attr('href','/perfil/perfil.html?id=' + perfil.id);
+            $("#profile-user-data").attr('src', imagem).attr('alt', 'Foto de' + perfil.nome);
+            $("#profile-user-link").attr('href','/perfil/perfil.html?id=' + perfil.id);
     },
         error: function(response) {
             tokenExpirado(response);
@@ -54,7 +54,7 @@ function publicarFeed() {
             headers: {'Authorization': 'Bearer ' + token},
             data: JSON.stringify({ descricao: publicacaoTexto }),
             success: function(response) {
-            var imagem =  carregarImagem(response);
+                var imagem =  carregarImagem(response);
 
                 $(".card-post-container").prepend(
                     `<div class="card-post card">

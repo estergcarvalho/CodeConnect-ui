@@ -53,11 +53,11 @@ function carregarDadosPerfil() {
         contentType: 'application/json',
         headers: {'Authorization': 'Bearer ' + token},
         success: function(perfil) {
-        var imagem = carregarImagem(perfil);
+            var imagem = carregarImagem(perfil);
 
-        $('#profile-user-image').attr('src', imagem).attr('alt', 'Foto de' + perfil.nome);
-        $('#item-perfil-user').attr('href','/perfil/perfil.html?id=' + perfil.id);
-        $('#item-perfil-edit').attr('href','/perfil/editar.html?id=' + perfil.id);
+            $('#profile-user-image').attr('src', imagem).attr('alt', 'Foto de' + perfil.nome);
+            $('#item-perfil-user').attr('href','/perfil/perfil.html?id=' + perfil.id);
+            $('#item-perfil-edit').attr('href','/perfil/editar.html?id=' + perfil.id);
         },
         error: function(response) {
             tokenExpirado(response);
