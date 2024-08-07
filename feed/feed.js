@@ -174,6 +174,7 @@ function listarPostagens() {
                 var imagem = carregarImagem(post.usuario);
                 let curtidoClasse = post.curtido ? 'card-reactions-unlike' : 'card-reactions-like';
                 let curtidoIcone = post.curtido ? 'bi-heart-fill' : 'bi-heart';
+                let curtidoTexto = post.curtido ? 'card-reactions-like-text' : '';
                 
                 $('#lista-postagem').append(
                     `<div class="card-post card">
@@ -208,7 +209,7 @@ function listarPostagens() {
                         </div>
                         <div class="card-footer pb-0">
                             <div class="card-reactions-count">
-                                <a href="#" class="card-reactions-count-likes" id="curtida-`+ post.id +`">0 curtida</a>
+                                <a href="#" class="card-reactions-count-likes" id="curtida-`+ post.id +`">0 curtidas</a>
                                 <a href="#">0 comentários</a>
                             </div>
 
@@ -217,7 +218,7 @@ function listarPostagens() {
                             <div class="card-reactions">
                                 <a class="`+ curtidoClasse +`" href="#" id="`+ post.id +`">
                                     <i class="`+ curtidoIcone +`" id="`+ post.id +`"></i>
-                                    <span>Curtir</span>
+                                    <span class="`+ curtidoTexto +`">Curtir</span>
                                 </a>
 
                                 <a class="card-reactions-comment" href="#" id="0">
@@ -268,6 +269,7 @@ function reacaoCurtir() {
             success: function() {
                 $this.removeClass("card-reactions-like").addClass("card-reactions-unlike");
                 $this.find("i").removeClass("bi-heart").addClass("bi-heart-fill");
+                $this.find("span").addClass("card-reactions-like-text");
 
                 totalCurtidas(id);
             },
@@ -295,6 +297,7 @@ function removerCurtida() {
                 success: function() {
                     $this.removeClass("card-reactions-unlike").addClass("card-reactions-like");
                     $this.find("i").removeClass("bi-heart-fill").addClass("bi-heart");
+                    $this.find("span").removeClass("card-reactions-like-text");
 
                     totalCurtidas(id);
                 },
