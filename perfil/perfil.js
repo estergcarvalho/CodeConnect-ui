@@ -116,7 +116,7 @@ function listarPostagens() {
     const url = new URLSearchParams(urlParams);
     const id = url.get('id');
 
-    if (id !== null) {
+    if (id != null) {
         $.ajax({
             url: 'http://localhost:8080/posts/' + id,
             type: 'GET',

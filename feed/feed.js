@@ -1,6 +1,6 @@
 $(document).ready(function() {
     dadosPerfil();
-    reacaoCurtir();
+    listarPostagens();
     reacaoComentario();
     comentar();
     carregarAtividadesRecentes();
@@ -10,7 +10,9 @@ $(document).ready(function() {
     fazerPublicacao();
     publicarFeed();
     habilitarPublicacao();
-    listarPostagens();
+    reacaoCurtir();
+    removerCurtida();
+    totalCurtidas();
 });
 
 function dadosPerfil() {
@@ -170,7 +172,9 @@ function listarPostagens() {
         success: function(data) {
             data.forEach(function(post) {
                 var imagem = carregarImagem(post.usuario);
-
+                let curtidoClasse = post.curtido ? 'card-reactions-unlike' : 'card-reactions-like';
+                let curtidoIcone = post.curtido ? 'bi-heart-fill' : 'bi-heart';
+                
                 $('#lista-postagem').append(
                     `<div class="card-post card">
                         <div class="card-header">
@@ -204,15 +208,15 @@ function listarPostagens() {
                         </div>
                         <div class="card-footer pb-0">
                             <div class="card-reactions-count">
-                                <a href="#" class="card-reactions-count-likes">0 curtidas</a>
+                                <a href="#" class="card-reactions-count-likes" id="curtida-`+ post.id +`">0 curtida</a>
                                 <a href="#">0 comentários</a>
                             </div>
 
                             <hr class="card-line card-line-count">
 
                             <div class="card-reactions">
-                                <a class="card-reactions-like" href="#" id="0">
-                                    <i class="bi bi-heart" id="img-like-1"></i>
+                                <a class="`+ curtidoClasse +`" href="#" id="`+ post.id +`">
+                                    <i class="`+ curtidoIcone +`" id="`+ post.id +`"></i>
                                     <span>Curtir</span>
                                 </a>
 
@@ -249,11 +253,79 @@ function listarPostagens() {
 }
 
 function reacaoCurtir() {
-    $(".card-reactions-like").click(function(e) {
+    $(document).on('click', '.card-reactions-like', function(e) {
         e.preventDefault();
 
-        $(this).find("i.bi-heart").removeClass("bi-heart").addClass("bi-heart-fill");
-    });
+        var token = localStorage.getItem('token');
+        var $this = $(this);
+        var id = $(this).attr('id');
+
+        $.ajax({
+            url: 'http://localhost:8080/posts/' + id + '/curtir',
+            type:'POST',
+            contentType:'application/json',
+            headers: {'Authorization': 'Bearer ' + token},
+            success: function() {
+                $this.removeClass("card-reactions-like").addClass("card-reactions-unlike");
+                $this.find("i").removeClass("bi-heart").addClass("bi-heart-fill");
+
+                totalCurtidas(id);
+            },
+            error: function(error) {
+                console.log("Erro ao curtir", error);
+            }
+         }); 
+    });           
+}
+
+function removerCurtida() {
+    $(document).on('click', '.card-reactions-unlike', function(e) {
+        e.preventDefault();
+       
+        var token = localStorage.getItem('token');
+        var $this = $(this);
+        var id = $(this).attr('id');
+
+        if (id != null) {
+            $.ajax({
+                url: 'http://localhost:8080/posts/' + id + '/remover-curtida',
+                type: 'DELETE',
+                contentType: 'application/json',
+                headers: {'Authorization': 'Bearer ' + token},
+                success: function() {
+                    $this.removeClass("card-reactions-unlike").addClass("card-reactions-like");
+                    $this.find("i").removeClass("bi-heart-fill").addClass("bi-heart");
+
+                    totalCurtidas(id);
+                },
+                error: function(error) {
+                    console.log("Erro ao remover curtida", error);
+                }
+            });
+        }
+    }); 
+}
+
+function totalCurtidas(id) {
+    var token = localStorage.getItem('token');
+
+    if (id != null) {
+        $.ajax({
+            url: 'http://localhost:8080/posts/' + id + '/total-curtidas',
+            type: 'GET',
+            contentType: 'application/json',
+            headers: {'Authorization': 'Bearer ' + token},
+            success: function(response) {
+                var total = response.total;
+                var textoCurtida = total > 1 ? 'curtidas' : 'curtida';
+
+                $('#curtida-' + id).text(total + ' ' + textoCurtida);
+            },
+            error: function(error) {
+                console.log("Erro ao retornar total de curtidas", error);
+            },
+        });
+    }
 }
 
 function reacaoComentario() {
