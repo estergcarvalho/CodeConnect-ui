@@ -81,7 +81,7 @@
     background-color: var(--mediumgrey);
     border-radius: 5px;
     height: 65px;
-    padding-top: 11px;
+    padding-top: 8px;
 }
 
 .card-post-avatar {
@@ -277,6 +277,10 @@
     float: left;
     display: block;
     margin: 2px 15px 0 5px;
+}
+
+.card-reactions-like-text {
+    color: #e63757 !important;
 }
 
 .card-line {
@@ -533,4 +537,8 @@
 .card-tab-news-content-time {
     font-size: 10px;
     font-weight: 300;
+}
+
+.bi-heart-fill::before {
+    color: #e63757;
 }
