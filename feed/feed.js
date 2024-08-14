@@ -1,18 +1,16 @@
 $(document).ready(function() {
     dadosPerfil();
     listarPostagens();
-    reacaoComentario();
-    comentar();
     carregarAtividadesRecentes();
     carregarMusicas();
     carregarTabNews();
-    fazerComentario();
     fazerPublicacao();
     publicarFeed();
     habilitarPublicacao();
     reacaoCurtir();
     removerCurtida();
     totalCurtidas();
+    enviarComentario();
 });
 
 function dadosPerfil() {
@@ -99,7 +97,7 @@ function publicarFeed() {
                                     <i class="bi bi-heart" id="img-like-1"></i>
                                     <span>Curtir</span>
                                 </a>
-                                <a class="card-reactions-comment" href="#" id="0">
+                               <a class="card-reactions-comment" href="#" id="`+ post.id +`">
                                     <i class="bi bi-chat"></i>
                                     <span>Comentar</span>
                                 </a>
@@ -115,7 +113,7 @@ function publicarFeed() {
                                 <img class="card-comment-avatar" src="`+ imagem +`" alt="Foto de `+ response.nome +`">
 
                                 <div class="card-comment-text mb-3">
-                                    <textarea class="card-comment-text-area" id="card-comment-text-1" placeholder="Escreva um comentário..."></textarea>
+                                    <textarea class="card-comment-text-area" id="card-comment-text-`+ post.id +`" placeholder="Escreva um comentário..."></textarea>
                                     <label class="form-label d-none" for="card-comment-text-1"></label>
                                     <button class="card-comment-btn" id="btnComentar" type="button">Comentar</button>
                                 </div>     
@@ -210,7 +208,7 @@ function listarPostagens() {
                         <div class="card-footer pb-0">
                             <div class="card-reactions-count">
                                 <a href="#" class="card-reactions-count-likes" id="curtida-`+ post.id +`">0 curtidas</a>
-                                <a href="#">0 comentários</a>
+                                <a href="#" class="card-reactions-count-comment" id="comentario-`+ post.id +`">0 comentários</a>
                             </div>
 
                             <hr class="card-line card-line-count">
@@ -221,7 +219,7 @@ function listarPostagens() {
                                     <span class="`+ curtidoTexto +`">Curtir</span>
                                 </a>
 
-                                <a class="card-reactions-comment" href="#" id="0">
+                                <a class="card-reactions-comment" href="#" id="`+ post.id +`">
                                     <i class="bi bi-chat"></i>
                                     <span>Comentar</span>
                                 </a>
@@ -236,15 +234,23 @@ function listarPostagens() {
 
                             <div class="card-comment">
                                    <img class="card-comment-avatar" src=" `+ imagem +`" alt="Foto de `+ post.usuario.nome +`">
+
                                 <div class="card-comment-text mb-3">
-                                    <textarea class="card-comment-text-area" id="card-comment-text-2" placeholder="Escreva um comentário..."></textarea>
+                                    <textarea class="card-comment-text-area" id="card-comment-text-`+ post.id +`" placeholder="Escreva um comentário..."></textarea>
                                     <label class="form-label d-none" for="card-comment-text-1"></label>
-                                    <button class="card-comment-btn" id="btnComentar" type="button">Comentar</button>
+                                    <button class="card-comment-btn" id="`+ post.id +`" type="button">Comentar</button>
                                 </div>
+                            </div>
+
+                            <div id="comentar-post" class="card-comment-response row">
                             </div>
                         </div>
                     </div>`
                 );
+
+                focoTextareaComentario();
+                expandirTextareaComentario();
+                exibirBotaoComentario();
             });
         },
         error: function(response) {
@@ -331,29 +337,6 @@ function totalCurtidas(id) {
     }
 }
 
-function reacaoComentario() {
-    $(".card-reactions-comment").click(function(e) {
-        e.preventDefault();
-
-        var id = $(this).prop("id");
-
-        $("#card-comment-text-" + id).focus();
-    });
-}
-
-function comentar() {
-    $(".card-comment-text-area").on("keyup", function() {
-
-        $(this).siblings("#btnComentar").hide();
-
-        var texto = $(this).val().trim();
-
-        if (texto !== "") {
-            $(this).siblings("#btnComentar").show();
-        }
-    });
-}
-
 function carregarAtividadesRecentes() {
     var cardTimeline = $(".card-timeline-activity-body");
 
@@ -384,7 +367,17 @@ function carregarTabNews() {
     }, 3000);
 }
 
-function fazerComentario() {
+function focoTextareaComentario() {
+    $(document).on('click', '.card-reactions-comment', function(e) {
+        e.preventDefault();
+
+        var id = $(this).prop("id");
+
+        $("#card-comment-text-" + id).focus();
+    });    
+}
+
+function expandirTextareaComentario() {
     $(".card-comment-text-area").on('input', function() {
         $(this).css('height', this.scrollHeight + 'px');
 
@@ -396,3 +389,90 @@ function fazerComentario() {
     });
 }
 
+function exibirBotaoComentario() {
+    $(".card-comment-text-area").on("keyup", function() {
+        $(this).siblings(".card-comment-btn").hide();
+
+        var texto = $(this).val().trim();
+
+        if (texto !== "") {
+            $(this).siblings(".card-comment-btn").show();
+        }
+    });
+}
+
+function enviarComentario() {
+    $(document).on('click', '.card-comment-btn', function() {
+        var token = localStorage.getItem('token');
+        var id = $(this).attr('id');
+        var descricao = $('#card-comment-text-' + id).val().trim();
+        var comentarRequest = {id: id, descricao: descricao};
+
+        if (descricao === "") {
+            alert("O comentário  não pode estar vazio");
+        }
+    
+        if (id != null) {
+            $.ajax({
+                url:"http://localhost:8080/posts/comentar",
+                type:'POST',
+                contentType:"application/json",
+                data:JSON.stringify(comentarRequest),
+                headers: {'Authorization': 'Bearer ' + token},
+                success: function(data) { 
+                    var imagem = carregarImagem(data.usuario);
+
+                    $("#comentar-post").prepend(
+                        `<div class="card-comment-response-comment d-flex mb-3">
+                            <a href="/perfil/perfil.html">
+                                <img class="card-comment-avatar col-2" src=" `+ imagem +`" alt="Foto de `+ data.usuario.nome +`">
+                            </a> 
+
+                            <div class="card-response-user col-10">
+                                <div class="card-comment-response-text"> 
+                                    <span>
+                                        <a href="/perfil/perfil.html?id=` + data.usuario.id + `">`+ data.usuario.nome +`</a>
+                                            `+ descricao +` 
+                                    </span>
+                                </div>
+                                <div class="card-comment-response-options">
+                                    <a href="#">Curtir</a>
+                                    <a href="#">Comentar</a>
+                                    12 min
+                                </div>
+                            </div>
+                        </div>`
+                    );
+
+                    totalComentarios(id);
+                },
+                error: function(error) {
+                    console.log("Erro ao adicionar comentário", error);
+                },
+            });
+         };    
+    });
+}
+
+function totalComentarios(id) {
+    var token = localStorage.getItem('token');
+
+    if (id != null) {
+        $.ajax({
+            url: 'http://localhost:8080/posts/' + id + '/total-comentarios',
+            type:'GET',
+            contentType:'application/json',
+            headers:{'Authorization':'Bearer ' + token},
+            success: function(response) {
+                var total = response.total;
+
+                var textoComentario = total > 1 ? 'comentarios' : 'comentario';
+
+                $('#comentario-' + id).text(total + ' ' + textoComentario);
+            },
+            error: function(error) {
+                console.log("Erro retornar total de comentários", error);
+            },
+        });
+    };
+}
