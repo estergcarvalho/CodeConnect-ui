@@ -192,12 +192,17 @@
     float: left;
 }
 
+.card-comment-response-comment {
+    width: 100%;
+}
+
 .card-comment-response-text {
     margin-left: 12px;
     background-color: var(--darkgrey);
     padding: 10px;
     border-radius: 10px;
     display: flex;
+    width: 110%;
 }
 
 .card-comment-response-text a {
