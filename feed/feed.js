@@ -242,7 +242,7 @@ function listarPostagens() {
                                 </div>
                             </div>
 
-                            <div id="comentar-post" class="card-comment-response row">
+                            <div id="comentar-post-`+ post.id +`" class="card-comment-response row">
                             </div>
                         </div>
                     </div>`
@@ -422,7 +422,7 @@ function enviarComentario() {
                 success: function(data) { 
                     var imagem = carregarImagem(data.usuario);
 
-                    $("#comentar-post").prepend(
+                    $("#comentar-post-" + id).prepend(
                         `<div class="card-comment-response-comment d-flex mb-3">
                             <a href="/perfil/perfil.html">
                                 <img class="card-comment-avatar col-2" src=" `+ imagem +`" alt="Foto de `+ data.usuario.nome +`">
