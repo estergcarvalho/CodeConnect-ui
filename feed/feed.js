@@ -97,7 +97,7 @@ function publicarFeed() {
                                     <i class="bi bi-heart" id="img-like-1"></i>
                                     <span>Curtir</span>
                                 </a>
-                               <a class="card-reactions-comment" href="#" id="`+ post.id +`">
+                               <a class="card-reactions-comment" href="#" id="`+ response.id +`">
                                     <i class="bi bi-chat"></i>
                                     <span>Comentar</span>
                                 </a>
@@ -113,7 +113,7 @@ function publicarFeed() {
                                 <img class="card-comment-avatar" src="`+ imagem +`" alt="Foto de `+ response.nome +`">
 
                                 <div class="card-comment-text mb-3">
-                                    <textarea class="card-comment-text-area" id="card-comment-text-`+ post.id +`" placeholder="Escreva um comentário..."></textarea>
+                                    <textarea class="card-comment-text-area" id="card-comment-text-`+ response.id +`" placeholder="Escreva um comentário..."></textarea>
                                     <label class="form-label d-none" for="card-comment-text-1"></label>
                                     <button class="card-comment-btn" id="btnComentar" type="button">Comentar</button>
                                 </div>     
@@ -174,6 +174,7 @@ function listarPostagens() {
                 let curtidoIcone = post.curtido ? 'bi-heart-fill' : 'bi-heart';
                 let curtidoTexto = post.curtido ? 'card-reactions-like-text' : '';
                 
+                
                 $('#lista-postagem').append(
                     `<div class="card-post card">
                         <div class="card-header">
@@ -208,7 +209,7 @@ function listarPostagens() {
                         <div class="card-footer pb-0">
                             <div class="card-reactions-count">
                                 <a href="#" class="card-reactions-count-likes" id="curtida-`+ post.id +`">0 curtidas</a>
-                                <a href="#" class="card-reactions-count-comment" id="comentario-`+ post.id +`">0 comentários</a>
+                               <a href="#" class="card-reactions-count-comment" id="comentario-`+ post.id +`">0 comentários</a> 
                             </div>
 
                             <hr class="card-line card-line-count">
@@ -248,6 +249,9 @@ function listarPostagens() {
                     </div>`
                 );
 
+                totalCurtidas(post.id);
+                totalComentarios(post.id);
+                listarComentarios(post.id);
                 focoTextareaComentario();
                 expandirTextareaComentario();
                 exibirBotaoComentario();
@@ -258,6 +262,7 @@ function listarPostagens() {
         }
     });                  
 }
+
 
 function reacaoCurtir() {
     $(document).on('click', '.card-reactions-like', function(e) {
@@ -422,7 +427,7 @@ function enviarComentario() {
                 success: function(data) { 
                     var imagem = carregarImagem(data.usuario);
 
-                    $("#comentar-post-" + id).prepend(
+                    $("#comentar-post-" + id).append(
                         `<div class="card-comment-response-comment d-flex mb-3">
                             <a href="/perfil/perfil.html">
                                 <img class="card-comment-avatar col-2" src=" `+ imagem +`" alt="Foto de `+ data.usuario.nome +`">
@@ -443,6 +448,9 @@ function enviarComentario() {
                             </div>
                         </div>`
                     );
+
+                    $("#card-comment-text-" + id).val('');
+                    $(".card-comment-btn").hide();
 
                     totalComentarios(id);
                 },
@@ -475,4 +483,48 @@ function totalComentarios(id) {
             },
         });
     };
+}
+
+function listarComentarios(id) {
+    var token = localStorage.getItem('token');
+    
+    if (id != null) {
+        $.ajax({
+            url: "http://localhost:8080/posts/" + id + "/comentarios",
+            type: 'GET',
+            dataType: "json",
+            headers: {'Authorization': 'Bearer ' + token},
+            success: function(comentarios) {  
+                comentarios.forEach(function(response) { 
+                    var imagem = carregarImagem(response.usuario);
+                    var descricao = response.descricao; 
+                    
+                    $('#comentar-post-' + id).append(
+                        `<div class="card-comment-response-comment d-flex mb-3">
+                            <a href="/perfil/perfil.html">
+                                <img class="card-comment-avatar col-2" src="` + imagem + `" alt="Foto de ` + response.usuario.nome + `">
+                            </a> 
+
+                            <div class="card-response-user col-10">
+                                <div class="card-comment-response-text"> 
+                                    <span>
+                                        <a href="/perfil/perfil.html?id=` + response.usuario.id + `">` + response.usuario.nome + `</a>
+                                            ` + descricao + ` 
+                                    </span>
+                                </div>
+                                <div class="card-comment-response-options">
+                                    <a href="#">Curtir</a>
+                                    <a href="#">Comentar</a>
+                                    12 min
+                                </div>
+                            </div>
+                        </div>`
+                    );
+                });
+            },
+            error: function(response) {
+                tokenExpirado(response);
+            }
+        });
+    }
 }
