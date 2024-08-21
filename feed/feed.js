@@ -209,7 +209,7 @@ function listarPostagens() {
                         <div class="card-footer pb-0">
                             <div class="card-reactions-count">
                                 <a href="#" class="card-reactions-count-likes" id="curtida-`+ post.id +`">0 curtidas</a>
-                               <a href="#" class="card-reactions-count-comment" id="comentario-`+ post.id +`">0 comentários</a> 
+                                <a href="#" class="card-reactions-count-comment" id="comentario-`+ post.id +`">0 comentários</a> 
                             </div>
 
                             <hr class="card-line card-line-count">
@@ -262,7 +262,6 @@ function listarPostagens() {
         }
     });                  
 }
-
 
 function reacaoCurtir() {
     $(document).on('click', '.card-reactions-like', function(e) {
@@ -440,6 +439,7 @@ function enviarComentario() {
                                             `+ descricao +` 
                                     </span>
                                 </div>
+
                                 <div class="card-comment-response-options">
                                     <a href="#">Curtir</a>
                                     <a href="#">Comentar</a>
@@ -512,6 +512,7 @@ function listarComentarios(id) {
                                             ` + descricao + ` 
                                     </span>
                                 </div>
+
                                 <div class="card-comment-response-options">
                                     <a href="#">Curtir</a>
                                     <a href="#">Comentar</a>
@@ -522,8 +523,8 @@ function listarComentarios(id) {
                     );
                 });
             },
-            error: function(response) {
-                tokenExpirado(response);
+            error: function(error) {
+                console.log("Erro ao listar comentários", error);
             }
         });
     }
