@@ -298,3 +298,171 @@ li {
     font-weight: 300;
     background-color: var(--lightblack);
 }
+
+.card-comment {
+    margin-top: 5px;
+    display: flex;
+}
+
+.card-comment-avatar {
+    height: 35px;
+    width: 35px;
+    border-radius: 90%;
+}
+
+.card-comment-text {
+    border-bottom: 10px;
+    padding-left: 15px;
+    width: 100%;
+}
+
+.card-comment-text textarea {
+    width: 100%;
+    height: 40px;
+    padding: 10px !important;
+    font-size: 13px;
+    font-weight: 400;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--mediumgrey);
+    display: block;
+    max-height: 250px;
+}
+
+.card-comment-btn {
+    font-size: 11px;
+    background-color: var(--btn);
+    border-radius: 5px;
+    border: none;
+    font-weight: 400;
+    padding: 4px 15px;
+    margin-top: 8px;
+    display: none;
+}
+
+.card-comment-btn:hover {
+    background-color: var(--btn-hover);
+}
+
+.card-comment-response {
+    display: flex;
+}
+
+.card-comment-response-avatar {
+    height: 35px;
+    width: 35px;
+    border-radius: 90%;
+}
+
+.card-response-user {
+    float: left;
+}
+
+.card-comment-response-comment {
+    width: 100%;
+}
+
+.card-comment-response-text {
+    margin-left: 12px;
+    background-color: var(--darkgrey);
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    width: 110%;
+}
+
+.card-comment-response-text a {
+    font-size: 13px;
+    text-decoration: none;
+    color: var(--green-water-two);
+    font-weight: 400;
+}
+
+.card-comment-response-text a:hover {
+    text-decoration: none;
+}
+
+.card-comment-response-text span {
+    font-size: 13px;
+    font-weight: 200;
+}
+
+.card-comment-response-options {
+    font-size: 11px;
+    margin-top: 5px;
+    margin-left: 17px;
+}
+
+.card-comment-response-options a {
+    margin-right: 5px;
+    text-decoration: none;
+    color: var(--green-water-two);
+}
+
+.card-comment-response-options a:hover {
+    text-decoration: none;
+    color: var(--green-water-two);
+}
+
+.card-reactions-count a {
+    font-size: 12px;
+    font-weight: 300;
+    text-decoration: none;
+    color: var(--green-water-two);
+}
+
+.card-reactions-count-likes::after {
+    content: "\00b7";
+    font-size: 10px;
+    font-weight: 600;
+    margin: 8px;
+}
+
+.card-reactions {
+    font-size: 13px;
+    font-weight: 300;
+}
+
+.card-reactions a {
+    text-decoration: none;
+    margin-right: 8px;
+}
+
+.card-reactions i {
+    font-size: 12px;
+    float: inline-start;
+    margin-top: 3px;
+    color: var(--pastelgrey);
+}
+
+.card-reactions img {
+    width: 13px;
+    margin-top: 5px;
+    float: left;
+}
+
+.card-reactions span {
+    color: var(--green-water-two);
+    font-size: 13px;
+    font-weight: 300;
+    float: left;
+    display: block;
+    margin: 2px 15px 0 5px;
+}
+
+.card-reactions-like-text {
+    color: #e63757 !important;
+}
+
+.card-line {
+    opacity: 0.1;
+    margin: 12px 0 8px 0;
+}
+
+.card-line-count {
+    margin-top: 8px;
+}
+
+.card-line-reactions {
+    margin-bottom: 15px;
+}
