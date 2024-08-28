@@ -466,3 +466,7 @@ li {
 .card-line-reactions {
     margin-bottom: 15px;
 }
+
+.bi-heart-fill::before {
+    color: #e63757;
+}
