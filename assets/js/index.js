@@ -12,7 +12,7 @@ $(document).ready(function() {
         size: 13
     });
 
-    carregarDadosPerfil();   
+    carregarDadosPerfil();
 });
 
 function validarToken() {
@@ -199,51 +199,6 @@ function enviarComentario() {
             });
          };    
     });
-}
-
-function listarComentarios(id) {
-    var token = localStorage.getItem('token');
-    
-    if (id != null) {
-        $.ajax({
-            url: "http://localhost:8080/posts/" + id + "/comentarios",
-            type: 'GET',
-            dataType: "json",
-            headers: {'Authorization': 'Bearer ' + token},
-            success: function(comentarios) {  
-                comentarios.forEach(function(response) { 
-                    var imagem = carregarImagem(response.usuario);
-                    var descricao = response.descricao; 
-                    
-                    $('#comentar-post-' + id).append(
-                        `<div class="card-comment-response-comment d-flex mb-3">
-                            <a href="/perfil/perfil.html">
-                                <img class="card-comment-avatar col-2" src="` + imagem + `" alt="Foto de ` + response.usuario.nome + `">
-                            </a> 
-
-                            <div class="card-response-user col-10">
-                                <div class="card-comment-response-text"> 
-                                    <span>
-                                        <a href="/perfil/perfil.html?id=` + response.usuario.id + `">` + response.usuario.nome + `</a>
-                                            ` + descricao + ` 
-                                    </span>
-                                </div>
-
-                                <div class="card-comment-response-options">
-                                    <a href="#">Curtir</a>
-                                    <a href="#">Comentar</a>
-                                    12 min
-                                </div>
-                            </div>
-                        </div>`
-                    );
-                });
-            },
-            error: function(error) {
-                console.log("Erro ao listar comentários", error);
-            }
-        });
-    }
 }
 
 function expandirTextareaComentario() {

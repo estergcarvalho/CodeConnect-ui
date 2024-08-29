@@ -207,8 +207,8 @@ function listarPostagens() {
                         </div>
                         <div class="card-footer pb-0">
                             <div class="card-reactions-count">
-                                <a href="#" class="card-reactions-count-likes" id="curtida-`+ post.id +`">0 curtidas</a>
-                                <a href="#" class="card-reactions-count-comment" id="comentario-`+ post.id +`">0 comentários</a> 
+                                <a href="#" class="card-reactions-count-likes" id="curtida-`+ post.id +`">`+ post.totalCurtidas.total +` curtidas</a>
+                                <a href="#" class="card-reactions-count-comment" id="comentario-`+ post.id +`">`+ post.totalComentarios.total +` comentários</a> 
                             </div>
 
                             <hr class="card-line card-line-count">
@@ -248,9 +248,7 @@ function listarPostagens() {
                     </div>`
                 );
 
-                totalCurtidas(post.id);
-                totalComentarios(post.id);
-                listarComentarios(post.id);
+                listarComentarios(post.id, post.comentarios);
                 focoTextareaComentario();
                 expandirTextareaComentario();
                 exibirBotaoComentario();
@@ -260,6 +258,35 @@ function listarPostagens() {
             tokenExpirado(response);
         }
     });                  
+}
+
+function listarComentarios(postId, comentarios) {
+    comentarios.forEach(comentario => {
+        var imagem = carregarImagem(comentario.usuario);
+        
+        $('#comentar-post-' + postId).append(
+            `<div class="card-comment-response-comment d-flex mb-3">
+                <a href="/perfil/perfil.html">
+                    <img class="card-comment-avatar col-2" src="` + imagem + `" alt="Foto de ` + comentario.usuario.nome + `">
+                </a> 
+
+                <div class="card-response-user col-10">
+                    <div class="card-comment-response-text"> 
+                        <span>
+                            <a href="/perfil/perfil.html?id=` + comentario.usuario.id + `">` + comentario.usuario.nome + `</a>
+                                ` + comentario.descricao + ` 
+                        </span>
+                    </div>
+
+                    <div class="card-comment-response-options">
+                        <a href="#">Curtir</a>
+                        <a href="#">Comentar</a>
+                        12 min
+                    </div>
+                </div>
+            </div>`
+        );
+    });
 }
 
 function carregarAtividadesRecentes() {
