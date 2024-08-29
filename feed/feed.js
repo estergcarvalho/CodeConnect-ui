@@ -205,6 +205,7 @@ function listarPostagens() {
                                 `+ post.descricao +`
                             </p>
                         </div>
+                        
                         <div class="card-footer pb-0">
                             <div class="card-reactions-count">
                                 <a href="#" class="card-reactions-count-likes" id="curtida-`+ post.id +`">`+ post.totalCurtidas.total +` curtidas</a>

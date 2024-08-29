@@ -6,7 +6,6 @@ $(document).ready(function() {
     adicionarImagem();
     reacaoCurtir();
     removerCurtida();
-    // totalCurtidas();
     enviarComentario();
 });
 
