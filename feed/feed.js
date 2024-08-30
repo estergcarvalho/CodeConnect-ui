@@ -98,6 +98,7 @@ function publicarFeed() {
                                     <span>Curtir</span>
                                 </a>
                                <a class="card-reactions-comment" href="#" id="`+ response.id +`">
+                               <a class="card-reactions-comment" href="#" id="`+ response.id +`">
                                     <i class="bi bi-chat"></i>
                                     <span>Comentar</span>
                                 </a>
@@ -113,6 +114,7 @@ function publicarFeed() {
                                 <img class="card-comment-avatar" src="`+ imagem +`" alt="Foto de `+ response.nome +`">
 
                                 <div class="card-comment-text mb-3">
+                                    <textarea class="card-comment-text-area" id="card-comment-text-`+ response.id +`" placeholder="Escreva um comentário..."></textarea>
                                     <textarea class="card-comment-text-area" id="card-comment-text-`+ response.id +`" placeholder="Escreva um comentário..."></textarea>
                                     <label class="form-label d-none" for="card-comment-text-1"></label>
                                     <button class="card-comment-btn" id="btnComentar" type="button">Comentar</button>
@@ -206,10 +208,11 @@ function listarPostagens() {
                                 `+ post.descricao +`
                             </p>
                         </div>
+                        
                         <div class="card-footer pb-0">
                             <div class="card-reactions-count">
-                                <a href="#" class="card-reactions-count-likes" id="curtida-`+ post.id +`">0 curtidas</a>
-                                <a href="#" class="card-reactions-count-comment" id="comentario-`+ post.id +`">0 comentários</a> 
+                                <a href="#" class="card-reactions-count-likes" id="curtida-`+ post.id +`">`+ post.totalCurtidas.total +` curtidas</a>
+                                <a href="#" class="card-reactions-count-comment" id="comentario-`+ post.id +`">`+ post.totalComentarios.total +` comentários</a> 
                             </div>
 
                             <hr class="card-line card-line-count">
@@ -249,9 +252,7 @@ function listarPostagens() {
                     </div>`
                 );
 
-                totalCurtidas(post.id);
-                totalComentarios(post.id);
-                listarComentarios(post.id);
+                listarComentarios(post.id, post.comentarios);
                 focoTextareaComentario();
                 expandirTextareaComentario();
                 exibirBotaoComentario();
@@ -263,82 +264,33 @@ function listarPostagens() {
     });                  
 }
 
-function reacaoCurtir() {
-    $(document).on('click', '.card-reactions-like', function(e) {
-        e.preventDefault();
+function listarComentarios(postId, comentarios) {
+    comentarios.forEach(comentario => {
+        var imagem = carregarImagem(comentario.usuario);
+        
+        $('#comentar-post-' + postId).append(
+            `<div class="card-comment-response-comment d-flex mb-3">
+                <a href="/perfil/perfil.html">
+                    <img class="card-comment-avatar col-2" src="` + imagem + `" alt="Foto de ` + comentario.usuario.nome + `">
+                </a> 
 
-        var token = localStorage.getItem('token');
-        var $this = $(this);
-        var id = $(this).attr('id');
+                <div class="card-response-user col-10">
+                    <div class="card-comment-response-text"> 
+                        <span>
+                            <a href="/perfil/perfil.html?id=` + comentario.usuario.id + `">` + comentario.usuario.nome + `</a>
+                                ` + comentario.descricao + ` 
+                        </span>
+                    </div>
 
-        $.ajax({
-            url: 'http://localhost:8080/posts/' + id + '/curtir',
-            type:'POST',
-            contentType:'application/json',
-            headers: {'Authorization': 'Bearer ' + token},
-            success: function() {
-                $this.removeClass("card-reactions-like").addClass("card-reactions-unlike");
-                $this.find("i").removeClass("bi-heart").addClass("bi-heart-fill");
-                $this.find("span").addClass("card-reactions-like-text");
-
-                totalCurtidas(id);
-            },
-            error: function(error) {
-                console.log("Erro ao curtir", error);
-            }
-         }); 
-    });           
-}
-
-function removerCurtida() {
-    $(document).on('click', '.card-reactions-unlike', function(e) {
-        e.preventDefault();
-       
-        var token = localStorage.getItem('token');
-        var $this = $(this);
-        var id = $(this).attr('id');
-
-        if (id != null) {
-            $.ajax({
-                url: 'http://localhost:8080/posts/' + id + '/remover-curtida',
-                type: 'DELETE',
-                contentType: 'application/json',
-                headers: {'Authorization': 'Bearer ' + token},
-                success: function() {
-                    $this.removeClass("card-reactions-unlike").addClass("card-reactions-like");
-                    $this.find("i").removeClass("bi-heart-fill").addClass("bi-heart");
-                    $this.find("span").removeClass("card-reactions-like-text");
-
-                    totalCurtidas(id);
-                },
-                error: function(error) {
-                    console.log("Erro ao remover curtida", error);
-                }
-            });
-        }
-    }); 
-}
-
-function totalCurtidas(id) {
-    var token = localStorage.getItem('token');
-
-    if (id != null) {
-        $.ajax({
-            url: 'http://localhost:8080/posts/' + id + '/total-curtidas',
-            type: 'GET',
-            contentType: 'application/json',
-            headers: {'Authorization': 'Bearer ' + token},
-            success: function(response) {
-                var total = response.total;
-                var textoCurtida = total > 1 ? 'curtidas' : 'curtida';
-
-                $('#curtida-' + id).text(total + ' ' + textoCurtida);
-            },
-            error: function(error) {
-                console.log("Erro ao retornar total de curtidas", error);
-            },
-        });
-    }
+                    <div class="card-comment-response-options">
+                        <a href="#">Curtir</a>
+                        <a href="#">Comentar</a>
+                        12 min
+                    </div>
+                </div>
+            </div>`
+        );
+    });
 }
 
 function carregarAtividadesRecentes() {
@@ -369,163 +321,4 @@ function carregarTabNews() {
     setTimeout(function() {
         cardTabNews.LoadingOverlay("hide");
     }, 3000);
-}
-
-function focoTextareaComentario() {
-    $(document).on('click', '.card-reactions-comment', function(e) {
-        e.preventDefault();
-
-        var id = $(this).prop("id");
-
-        $("#card-comment-text-" + id).focus();
-    });    
-}
-
-function expandirTextareaComentario() {
-    $(".card-comment-text-area").on('input', function() {
-        $(this).css('height', this.scrollHeight + 'px');
-
-        var texto = $(this).val().trim();
-
-        if (texto === "") {
-            $(this).css('height', '');
-        }
-    });
-}
-
-function exibirBotaoComentario() {
-    $(".card-comment-text-area").on("keyup", function() {
-        $(this).siblings(".card-comment-btn").hide();
-
-        var texto = $(this).val().trim();
-
-        if (texto !== "") {
-            $(this).siblings(".card-comment-btn").show();
-        }
-    });
-}
-
-function enviarComentario() {
-    $(document).on('click', '.card-comment-btn', function() {
-        var token = localStorage.getItem('token');
-        var id = $(this).attr('id');
-        var descricao = $('#card-comment-text-' + id).val().trim();
-        var comentarRequest = {id: id, descricao: descricao};
-
-        if (descricao === "") {
-            alert("O comentário  não pode estar vazio");
-        }
-    
-        if (id != null) {
-            $.ajax({
-                url:"http://localhost:8080/posts/comentar",
-                type:'POST',
-                contentType:"application/json",
-                data:JSON.stringify(comentarRequest),
-                headers: {'Authorization': 'Bearer ' + token},
-                success: function(data) { 
-                    var imagem = carregarImagem(data.usuario);
-
-                    $("#comentar-post-" + id).append(
-                        `<div class="card-comment-response-comment d-flex mb-3">
-                            <a href="/perfil/perfil.html">
-                                <img class="card-comment-avatar col-2" src=" `+ imagem +`" alt="Foto de `+ data.usuario.nome +`">
-                            </a> 
-
-                            <div class="card-response-user col-10">
-                                <div class="card-comment-response-text"> 
-                                    <span>
-                                        <a href="/perfil/perfil.html?id=` + data.usuario.id + `">`+ data.usuario.nome +`</a>
-                                            `+ descricao +` 
-                                    </span>
-                                </div>
-
-                                <div class="card-comment-response-options">
-                                    <a href="#">Curtir</a>
-                                    <a href="#">Comentar</a>
-                                    12 min
-                                </div>
-                            </div>
-                        </div>`
-                    );
-
-                    $("#card-comment-text-" + id).val('');
-                    $(".card-comment-btn").hide();
-
-                    totalComentarios(id);
-                },
-                error: function(error) {
-                    console.log("Erro ao adicionar comentário", error);
-                },
-            });
-         };    
-    });
-}
-
-function totalComentarios(id) {
-    var token = localStorage.getItem('token');
-
-    if (id != null) {
-        $.ajax({
-            url: 'http://localhost:8080/posts/' + id + '/total-comentarios',
-            type:'GET',
-            contentType:'application/json',
-            headers:{'Authorization':'Bearer ' + token},
-            success: function(response) {
-                var total = response.total;
-
-                var textoComentario = total > 1 ? 'comentarios' : 'comentario';
-
-                $('#comentario-' + id).text(total + ' ' + textoComentario);
-            },
-            error: function(error) {
-                console.log("Erro retornar total de comentários", error);
-            },
-        });
-    };
-}
-
-function listarComentarios(id) {
-    var token = localStorage.getItem('token');
-    
-    if (id != null) {
-        $.ajax({
-            url: "http://localhost:8080/posts/" + id + "/comentarios",
-            type: 'GET',
-            dataType: "json",
-            headers: {'Authorization': 'Bearer ' + token},
-            success: function(comentarios) {  
-                comentarios.forEach(function(response) { 
-                    var imagem = carregarImagem(response.usuario);
-                    var descricao = response.descricao; 
-                    
-                    $('#comentar-post-' + id).append(
-                        `<div class="card-comment-response-comment d-flex mb-3">
-                            <a href="/perfil/perfil.html">
-                                <img class="card-comment-avatar col-2" src="` + imagem + `" alt="Foto de ` + response.usuario.nome + `">
-                            </a> 
-
-                            <div class="card-response-user col-10">
-                                <div class="card-comment-response-text"> 
-                                    <span>
-                                        <a href="/perfil/perfil.html?id=` + response.usuario.id + `">` + response.usuario.nome + `</a>
-                                            ` + descricao + ` 
-                                    </span>
-                                </div>
-
-                                <div class="card-comment-response-options">
-                                    <a href="#">Curtir</a>
-                                    <a href="#">Comentar</a>
-                                    12 min
-                                </div>
-                            </div>
-                        </div>`
-                    );
-                });
-            },
-            error: function(error) {
-                console.log("Erro ao listar comentários", error);
-            }
-        });
-    }
 }

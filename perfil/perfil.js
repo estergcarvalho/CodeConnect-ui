@@ -4,6 +4,9 @@ $(document).ready(function() {
     redesSociais();
     listarPostagens();
     adicionarImagem();
+    reacaoCurtir();
+    removerCurtida();
+    enviarComentario();
 });
 
 function carregarPerfilUsuario() {
@@ -122,62 +125,74 @@ function listarPostagens() {
             type: 'GET',
             dataType: "json",
             headers: { 'Authorization': 'Bearer ' + token },
-            success: function (data) {
-                data.forEach(function (post) {
-                    var imagem = carregarImagem(post);
-                
-                    $('#lista-postagem').prepend(
+            success: function(data) {
+                var imagem = carregarImagem(data.usuario);
+
+                data.posts.forEach(function(post) {
+                    let curtidoClasse = post.curtido ? 'card-reactions-unlike' : 'card-reactions-like';
+                    let curtidoIcone = post.curtido ? 'bi-heart-fill' : 'bi-heart';
+                    let curtidoTexto = post.curtido ? 'card-reactions-like-text' : '';
+                    
+                    $('#lista-postagem').append(
                         `<div class="card-post card">
                             <div class="card-body">
                                 <p class="card-post-text">
-                                    `+ post.descricao + `
+                                    `+ post.descricao +`
                                 </p>
                             </div>
-
                             <div class="card-footer pb-0">
                                 <div class="card-reactions-count">
-                                    <a href="#" class="card-reactions-count-likes">0 curtidas</a>
-                                    <a href="#">0 comentários</a>
+                                    <a href="#" class="card-reactions-count-likes" id="curtida-`+ post.id +`">`+ post.totalCurtidas.total +` curtidas</a>
+                                    <a href="#" class="card-reactions-count-comment" id="comentario-`+ post.id +`">`+ post.totalComentarios.total +` comentários</a> 
                                 </div>
+    
                                 <hr class="card-line card-line-count">
-
+    
                                 <div class="card-reactions">
-                                    <a class="card-reactions-like" href="#" id="0">
-                                        <i class="bi bi-heart" id="img-like-1"></i>
-                                        <span>Curtir</span>
+                                    <a class="`+ curtidoClasse +`" href="#" id="`+ post.id +`">
+                                        <i class="`+ curtidoIcone +`" id="`+ post.id +`"></i>
+                                        <span class="`+ curtidoTexto +`">Curtir</span>
                                     </a>
-
-                                    <a class="card-reactions-comment" href="#" id="0">
+    
+                                    <a class="card-reactions-comment" href="#" id="`+ post.id +`">
                                         <i class="bi bi-chat"></i>
                                         <span>Comentar</span>
                                     </a>
-
+    
                                     <a href="#">
                                         <i class="bi bi-share"></i>
                                         <span>Compartilhar</span>
                                     </a>
                                 </div>
-
-                                    <hr class="card-line card-line-reactions">
-
+    
+                                <hr class="card-line card-line-reactions">
+    
                                 <div class="card-comment">
-                                    <img class="card-comment-avatar" src="`+ imagem +`" alt="Foto de `+ post.nome +`">
-
+                                    <img class="card-comment-avatar" src=" `+ imagem +`" alt="Foto de `+ post.nome +`">
+    
                                     <div class="card-comment-text mb-3">
-                                        <textarea class="card-comment-text-area" id="card-comment-text-2" placeholder="Escreva um comentário..."></textarea>
-                                            <label class="form-label d-none" for="card-comment-text-1"></label>
-                                        <button class="card-comment-btn" id="btnComentar" type="button">Comentar</button>
+                                        <textarea class="card-comment-text-area" id="card-comment-text-`+ post.id +`" placeholder="Escreva um comentário..."></textarea>
+                                        <label class="form-label d-none" for="card-comment-text-1"></label>
+                                        <button class="card-comment-btn" id="`+ post.id +`" type="button">Comentar</button>
                                     </div>
+                                </div>
+    
+                                <div id="comentar-post-`+ post.id +`" class="card-comment-response row">
                                 </div>
                             </div>
                         </div>`
                     );
+    
+                    listarComentariosPerfil(post.id, post.comentarios);
+                    focoTextareaComentario();
+                    expandirTextareaComentario();
+                    exibirBotaoComentario();
                 });
             },
             error: function(response) {
                 tokenExpirado(response);
             }
-        });
+        });                  
     }
 }
 
@@ -212,4 +227,33 @@ function adicionarImagem() {
             });
         }
     }) 
+}
+
+function listarComentariosPerfil(postId, comentarios) {
+    comentarios.forEach(comentario => {
+        var imagem = carregarImagem(comentario.usuario);
+
+        $('#comentar-post-' + postId).append(
+            `<div class="card-comment-response-comment d-flex mb-3">
+                <a href="/perfil/perfil.html">
+                    <img class="card-comment-avatar col-2" src="` + imagem + `" alt="Foto de ` + comentario.usuario.nome + `">
+                </a> 
+
+                <div class="card-response-user col-10">
+                    <div class="card-comment-response-text"> 
+                        <span>
+                            <a href="/perfil/perfil.html?id=` + comentario.usuario.id + `">` + comentario.usuario.nome + `</a>
+                                ` + comentario.descricao + ` 
+                        </span>
+                    </div>
+
+                    <div class="card-comment-response-options">
+                        <a href="#">Curtir</a>
+                        <a href="#">Comentar</a>
+                        12 min
+                    </div>
+                </div>
+            </div>`
+        );
+    });
 }
