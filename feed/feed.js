@@ -98,6 +98,7 @@ function publicarFeed() {
                                     <span>Curtir</span>
                                 </a>
                                <a class="card-reactions-comment" href="#" id="`+ response.id +`">
+                               <a class="card-reactions-comment" href="#" id="`+ response.id +`">
                                     <i class="bi bi-chat"></i>
                                     <span>Comentar</span>
                                 </a>
@@ -113,6 +114,7 @@ function publicarFeed() {
                                 <img class="card-comment-avatar" src="`+ imagem +`" alt="Foto de `+ response.nome +`">
 
                                 <div class="card-comment-text mb-3">
+                                    <textarea class="card-comment-text-area" id="card-comment-text-`+ response.id +`" placeholder="Escreva um comentário..."></textarea>
                                     <textarea class="card-comment-text-area" id="card-comment-text-`+ response.id +`" placeholder="Escreva um comentário..."></textarea>
                                     <label class="form-label d-none" for="card-comment-text-1"></label>
                                     <button class="card-comment-btn" id="btnComentar" type="button">Comentar</button>
@@ -173,6 +175,7 @@ function listarPostagens() {
                 let curtidoClasse = post.curtido ? 'card-reactions-unlike' : 'card-reactions-like';
                 let curtidoIcone = post.curtido ? 'bi-heart-fill' : 'bi-heart';
                 let curtidoTexto = post.curtido ? 'card-reactions-like-text' : '';
+                
                 
                 $('#lista-postagem').append(
                     `<div class="card-post card">
