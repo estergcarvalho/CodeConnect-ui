@@ -232,6 +232,7 @@ function adicionarImagem() {
 function listarComentariosPerfil(postId, comentarios) {
     comentarios.forEach(comentario => {
         var imagem = carregarImagem(comentario.usuario);
+        var dataCriacao = new Date(comentario.data_criacao).toLocaleString();
 
         $('#comentar-post-' + postId).append(
             `<div class="card-comment-response-comment d-flex mb-3">
@@ -250,7 +251,7 @@ function listarComentariosPerfil(postId, comentarios) {
                     <div class="card-comment-response-options">
                         <a href="#">Curtir</a>
                         <a href="#">Comentar</a>
-                        12 min
+                        `+ dataCriacao +`
                     </div>
                 </div>
             </div>`

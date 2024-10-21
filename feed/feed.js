@@ -11,6 +11,7 @@ $(document).ready(function() {
     removerCurtida();
     totalCurtidas();
     enviarComentario();
+    listarAtividadesRecentes();
 });
 
 function dadosPerfil() {
@@ -175,7 +176,7 @@ function listarPostagens() {
                 let curtidoClasse = post.curtido ? 'card-reactions-unlike' : 'card-reactions-like';
                 let curtidoIcone = post.curtido ? 'bi-heart-fill' : 'bi-heart';
                 let curtidoTexto = post.curtido ? 'card-reactions-like-text' : '';
-                
+                var dataCriacao = new Date(post.data_criacao).toLocaleString();
                 
                 $('#lista-postagem').append(
                     `<div class="card-post card">
@@ -196,7 +197,7 @@ function listarPostagens() {
                                             `+ post.usuario.profissao +`
                                         </div>  
                                         <div class="card-post-date">
-                                            1 hora
+                                           `+ dataCriacao +`
                                         </div>
                                     </div>
                                 </div>
@@ -267,6 +268,7 @@ function listarPostagens() {
 function listarComentarios(postId, comentarios) {
     comentarios.forEach(comentario => {
         var imagem = carregarImagem(comentario.usuario);
+        var dataCriacao = new Date(comentario.data_criacao).toLocaleString();
         
         $('#comentar-post-' + postId).append(
             `<div class="card-comment-response-comment d-flex mb-3">
@@ -285,22 +287,12 @@ function listarComentarios(postId, comentarios) {
                     <div class="card-comment-response-options">
                         <a href="#">Curtir</a>
                         <a href="#">Comentar</a>
-                        12 min
+                        `+ dataCriacao +`
                     </div>
                 </div>
             </div>`
         );
     });
-}
-
-function carregarAtividadesRecentes() {
-    var cardTimeline = $(".card-timeline-activity-body");
-
-    cardTimeline.LoadingOverlay("show");
-
-    setTimeout(function() {
-        cardTimeline.LoadingOverlay("hide");
-    }, 3000);
 }
 
 function carregarMusicas() {
@@ -321,4 +313,66 @@ function carregarTabNews() {
     setTimeout(function() {
         cardTabNews.LoadingOverlay("hide");
     }, 3000);
+}
+
+
+function carregarAtividadesRecentes() {
+    var cardTimeline = $(".card-timeline-activity-body");
+
+    cardTimeline.LoadingOverlay("show");
+
+    setTimeout(function() {
+        cardTimeline.LoadingOverlay("hide");
+    }, 3000);
+}
+
+function listarAtividadesRecentes() {
+    var token = localStorage.getItem('token');
+
+    $.ajax({
+        url: "http://localhost:8080/atividades-recentes",
+        type: 'GET',
+        dataType: "json",
+        headers: {'Authorization': 'Bearer ' + token},
+        success: function(data) {
+            $('#atividade-recente').append(
+                `<div class="card-timeline-header card-header position-relative">
+                    <div class="card-timeline-title position-absolute top-50 start-50 translate-middle">
+                        <h5>Atividades recentes</h5>
+                    </div>
+                </div>`
+            );
+
+            data.forEach(function(atividade) {
+                var imagem = carregarImagem(atividade); 
+                var dataCriacao = new Date(atividade.data_criacao).toLocaleString();
+                let icone = atividade.atividade === "CURTIDA" ? '<i class="bi bi-heart"></i>' : '<i class="card-icon bi bi-chat"></i>';
+
+                $('#atividade-recente').append(
+                    `<div class="card-body card-timeline-activity-body">
+                        <div class="card-timeline-activity row">
+                            <div class="card-timeline-icon card-timeline-line col-md-1 col-lg-2">
+                               `+ icone +`
+                            </div>
+                            <div class="card-timeline-recent-activity col-md-11 col-lg-10">
+                                <div class="card-timeline-content"> 
+                                    <div class="card-timeline-card">
+                                        <a href="/perfil/perfil.html?id=`+ atividade.id +`">
+                                            <img src="`+ imagem +`" alt="Foto de `+ atividade.nome +`">
+                                            <span class="card-timeline-name-user">`+ atividade.nome +`</span>
+                                        </a>
+                                        <p>`+ (atividade.atividade === "CURTIDA" ? "Curtiu" : "Comentou em") + ` uma <a href="/post/`+ atividade.post_id +`">postagem</a>.</p>
+                                        <p>`+ dataCriacao +`</p>   
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>`
+                );
+            });
+        },
+        error: function(response) {
+            tokenExpirado(response);
+        }
+    });
 }
